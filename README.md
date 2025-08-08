@@ -1,29 +1,96 @@
 
 # ClipCrop
 
-**ClipCrop** is a 100% client-side image cropper for creators & marketers.
-- Circle / Rounded / Rectangle
-- Border / Padding / Shadow
-- Filters & Presets
-- Watermark (text/logo)
-- Social presets & previews
-- Batch ZIP (128/256/512)
-- Auto subject center
-- PWA offline
-- i18n (EN/中文/ES)
+**ClipCrop** 是一个100%客户端的图片裁剪工具，专为创作者和营销人员设计。
 
-Live domain (set canonical): https://crop-image-tool.com
+## ✨ 主要功能
 
-## Dev
-```
+### 🎯 核心功能
+- **圆形/圆角/矩形裁剪** - 支持多种裁剪形状
+- **边框/内边距/阴影** - 丰富的视觉效果
+- **滤镜和预设** - 内置多种滤镜效果
+- **水印功能** - 支持文字和Logo水印
+- **社交平台预设** - 一键适配各平台尺寸
+
+### 🚀 高级功能
+- **批量ZIP导出** - 支持多尺寸批量处理 (128/256/512)
+- **自动主体居中** - AI智能识别主体并居中
+- **PWA离线支持** - 无需网络即可使用
+- **多语言支持** - 中文/英文/西班牙语
+
+### 🎨 新增功能
+- **主题切换** - 深色/浅色模式
+- **预设分类** - 按平台类型分类选择
+- **批量处理优化** - 多种预设尺寸组合
+- **响应式设计** - 完美适配移动端
+- **快捷键支持** - 提升操作效率
+
+## 📱 支持的平台
+
+### 社交媒体
+- Instagram (Post/Story)
+- Twitter/X (Banner)
+- Facebook (Cover)
+- LinkedIn (Cover)
+- YouTube (Thumbnail)
+- Pinterest (Pin)
+- Telegram (Profile)
+
+### 中国平台
+- 小红书 (笔记封面)
+- B站 (封面)
+- 豆瓣 (小组封面)
+- 抖音 (封面)
+- 微信 (头像)
+- 微博 (头像)
+
+### 电商平台
+- 淘宝 (主图/白底图)
+- 京东 (主图)
+- 拼多多 (主图)
+- Amazon (主图)
+- Etsy (主图)
+
+### 专业平台
+- Behance (项目封面)
+- Dribbble (Shot)
+- Figma (封面)
+
+## 🛠️ 开发
+
+```bash
 npm install
 npm run dev
 ```
 
-## Build
-```
+## 📦 构建
+
+```bash
 npm run build
 ```
 
-## Deploy (Vercel)
-Use `vercel.json` (Vite → dist).
+## 🚀 部署 (Vercel)
+
+使用 `vercel.json` (Vite → dist)。
+
+## ⌨️ 快捷键
+
+- `?` - 显示/隐藏帮助
+- `Ctrl/Cmd + S` - 导出图片
+- `Escape` - 关闭帮助
+- `Delete` - 删除当前图片 (批量模式)
+- `鼠标滚轮` - 缩放
+- `Shift + 滚轮` - 旋转
+- `拖拽` - 移动裁剪区域
+
+## 🌟 特色优势
+
+- **100%客户端** - 图片不上传，保护隐私
+- **极速处理** - 纯前端处理，无需等待
+- **免费使用** - 完全免费，无广告
+- **离线可用** - PWA支持，离线也能用
+- **多平台适配** - 覆盖主流社交和电商平台
+
+---
+
+Live domain: https://crop-image-tool.com

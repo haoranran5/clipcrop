@@ -1,19 +1,24 @@
 
 import React, { useCallback, useState } from 'react'
 import Cropper from 'react-easy-crop'
-import { presets } from './components/presets'
+import { presets, Preset } from './components/presets'
 import { getCroppedImage, readFileAsImage, fixExifOrientation, simpleSaliencyCenter } from './components/utils'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 import { useTranslation } from 'react-i18next'
 import { GridOverlay } from './components/overlay'
 import SocialPreview from './components/socialPreview'
+import { ThemeToggle } from './components/themeToggle'
+import { BatchProcessor } from './components/batchProcessor'
+import { PresetCategories } from './components/presetCategories'
+import { MobileOptimizer, useIsMobile } from './components/mobileOptimizer'
 import i18n from './i18n/setup'
 
 type Format = 'png' | 'jpeg' | 'webp'
 
 export default function App() {
   const { t } = useTranslation()
+  const isMobile = useIsMobile()
   const [imageSrc, setImageSrc] = useState<string | null>(null)
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
@@ -101,17 +106,25 @@ export default function App() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === '?') setShowHelp(s => !s)
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); exportImage() }
+      if (e.key === 'Escape') setShowHelp(false)
+      if (e.key === 'Delete' && queue.length > 1) {
+        const newQueue = queue.filter((_, i) => i !== activeIdx)
+        setQueue(newQueue)
+        if (activeIdx >= newQueue.length) setActiveIdx(Math.max(0, newQueue.length - 1))
+        setImageSrc(newQueue[Math.max(0, newQueue.length - 1)] || null)
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [])
+  }, [queue, activeIdx])
 
-  React.useEffect(() => {
-    const path = location.pathname.replace(/\/$/, '')
-    if (path === '/zh') i18n.changeLanguage('zh')
-    if (path === '/en') i18n.changeLanguage('en')
-    if (path === '/es') i18n.changeLanguage('es')
-  }, [])
+  // 语言切换处理
+  const handleLanguageChange = (lang: string) => {
+    i18n.changeLanguage(lang)
+    const currentPath = window.location.pathname
+    const newPath = `/${lang}${currentPath.includes('/zh') || currentPath.includes('/en') || currentPath.includes('/es') ? currentPath.substring(3) : ''}`
+    window.history.pushState(null, '', newPath)
+  }
 
   const onCropComplete = useCallback((_c:any, pixels:any) => setCroppedAreaPixels(pixels), [])
 
@@ -269,7 +282,8 @@ export default function App() {
   }
 
   return (
-    <div>
+    <MobileOptimizer>
+      <div className={isMobile ? 'mobile-layout' : ''}>
       <header>
         <div className="container topbar">
           <div className="brand">
@@ -277,9 +291,10 @@ export default function App() {
             <h1>{t('title')}</h1>
           </div>
           <div className="langs">
-            <button className="ghost" onClick={() => i18n.changeLanguage('en')}>EN</button>
-            <button className="ghost" onClick={() => i18n.changeLanguage('zh')}>中文</button>
-            <button className="ghost" onClick={() => i18n.changeLanguage('es')}>ES</button>
+            <ThemeToggle />
+            <button className="ghost" onClick={() => handleLanguageChange('en')}>EN</button>
+            <button className="ghost" onClick={() => handleLanguageChange('zh')}>中文</button>
+            <button className="ghost" onClick={() => handleLanguageChange('es')}>ES</button>
           </div>
         </div>
       </header>
@@ -323,11 +338,14 @@ export default function App() {
           <div className="group">
             <h4>{t('presets')}</h4>
             <div className="small">Click to set canvas aspect</div>
-            <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:6}}>
-              {presets.map((p,i)=> (
-                <button key={i} className="ghost" onClick={()=>{ setAspect(p.width/p.height); setCircle(false); setLastPreset(`${p.platform}-${p.type}`) }}>{p.platform} {p.type}</button>
-              ))}
-            </div>
+            <PresetCategories 
+              onPresetSelect={(preset: Preset) => {
+                setAspect(preset.width/preset.height)
+                setCircle(false)
+                setLastPreset(`${preset.platform}-${preset.type}`)
+              }}
+              selectedPreset={lastPreset}
+            />
           </div>
 
           {batchProgress && (<div className="group"><h4>Batch progress</h4><div className="small">{batchProgress.done} / {batchProgress.total}</div></div>)}
@@ -394,10 +412,19 @@ export default function App() {
             <label className="row"><span>File name</span><input type="text" value={filePrefix} onChange={e=>setFilePrefix(e.target.value)} /></label>
             <div style={{display:'flex', gap:8, flexWrap:'wrap', alignItems:'center'}}>
               <button className="primary" onClick={exportImage} disabled={working}>{t('download')}</button>
-              <button className="ghost" onClick={()=>exportBatchZip([128,256,512])} disabled={working}>{t('batch')}</button>
               <button className="ghost" onClick={autoSubjectCenter} disabled={working}>{t('autoFace')}</button>
               {working && <div className='small'>Generating… {Math.round(progress*100)}%</div>}
             </div>
+            
+            {queue.length > 0 && (
+              <BatchProcessor
+                queue={queue}
+                onBatchComplete={() => {}}
+                onProgress={setProgress}
+                exportBatchZip={exportBatchZip}
+                working={working}
+              />
+            )}
           </div>
 
           {batchProgress && (<div className="group"><h4>Batch progress</h4><div className="small">{batchProgress.done} / {batchProgress.total}</div></div>)}
@@ -429,6 +456,8 @@ export default function App() {
             <ul>
               <li><b>?</b> toggle this help</li>
               <li><b>Ctrl/Cmd + S</b> export</li>
+              <li><b>Escape</b> close help</li>
+              <li><b>Delete</b> remove current image (batch mode)</li>
               <li><b>Mouse wheel</b> zoom</li>
               <li><b>Shift + wheel</b> rotate</li>
               <li><b>Drag</b> move crop</li>
@@ -445,6 +474,7 @@ export default function App() {
           <div className="badge">{t('seo_badges')}</div>
         </div>
       </footer>
-    </div>
+      </div>
+    </MobileOptimizer>
   )
 }

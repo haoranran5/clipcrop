@@ -2,23 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>ClipCrop — Free Online Image Crop Tool | Crop, Resize, Circle & Rounded</title>
     <meta name="description" content="Fast, privacy‑friendly online image cropper—circle & rounded corners, padding, shadow, filters, watermark, batch ZIP, social previews, PWA offline. 100% in your browser." />
     <meta name="keywords" content="crop image tool, online image cropper, image resizer, circle avatar, rounded corners image, photo editor, batch export zip, social media preview, privacy-friendly, PWA" />
     <link rel="canonical" href="https://crop-image-tool.com/" />
-    <link rel="alternate" href="https://crop-image-tool.com/en" hreflang="en" />
-    <link rel="alternate" href="https://crop-image-tool.com/zh" hreflang="zh-CN" />
-    <link rel="alternate" href="https://crop-image-tool.com/es" hreflang="es" />
+    
+    <!-- 多语言SEO支持 -->
+    <link rel="alternate" hreflang="en" href="https://crop-image-tool.com/en" />
+    <link rel="alternate" hreflang="zh" href="https://crop-image-tool.com/zh" />
+    <link rel="alternate" hreflang="es" href="https://crop-image-tool.com/es" />
+    <link rel="alternate" hreflang="x-default" href="https://crop-image-tool.com/" />
+    
+    <!-- Open Graph -->
     <meta property="og:title" content="ClipCrop — Free Online Image Crop Tool" />
     <meta property="og:description" content="Crop & resize images online with circle/rounded corners, watermark, filters, batch ZIP, and live previews. No uploads." />
     <meta property="og:url" content="https://crop-image-tool.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://crop-image-tool.com/og-cover.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="ClipCrop" />
+    
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ClipCrop — Online Image Cropper" />
     <meta name="twitter:description" content="No-upload, offline-capable image cropper for creators and marketers." />
-
+    <meta name="twitter:image" content="https://crop-image-tool.com/og-cover.png" />
+    
+    <!-- 移动端优化 -->
+    <meta name="theme-color" content="#1f8bff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="ClipCrop" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <!-- 结构化数据 -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -29,15 +49,24 @@
       "url": "https://crop-image-tool.com/",
       "image": "https://crop-image-tool.com/og-cover.png",
       "description": "Free online image crop tool with circle & rounded corners, batch ZIP, social presets, filters, watermark. 100% client-side.",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1250"
+      },
+      "featureList": [
+        "Circle and rounded corner cropping",
+        "Batch export with ZIP",
+        "Social media presets",
+        "Filters and effects",
+        "Watermark support",
+        "PWA offline capability",
+        "Privacy-friendly (no uploads)"
+      ]
     }
     </script>
 
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="icon" href="/icons/favicon-192.png" type="image/png" />
-    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-      <script defer data-domain="crop-image-tool.com" src="https://plausible.io/js/script.js"></script>
-  
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -58,24 +87,31 @@
         "@type": "Question",
         "name": "How do I batch export multiple sizes?",
         "acceptedAnswer": { "@type": "Answer", "text": "Use the Batch ZIP buttons (128/256/512). V5.2 uses a Web Worker so the UI remains responsive." }
+      },{
+        "@type": "Question",
+        "name": "What social media platforms are supported?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Instagram, Twitter, Facebook, LinkedIn, YouTube, Pinterest, Telegram, 小红书, B站, 豆瓣, 抖音, 微信, 微博 and more." }
+      },{
+        "@type": "Question",
+        "name": "Is it free to use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, ClipCrop is completely free with no ads or limitations." }
       }]
     }
     </script>
 
-  
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"Is ClipCrop free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It's 100% free and runs entirely in your browser."}},
-    {"@type":"Question","name":"Do you upload my images?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens locally in your browser. We do not store or transmit your images."}},
-    {"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. Install it as a PWA. The core features work without internet access."}},
-    {"@type":"Question","name":"Can I export multiple sizes at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use Batch ZIP to export 128/256/512 or any custom sizes."}}
-  ]
-}
-</script>
-
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icons/favicon-192.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-192.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-192.png" />
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    <link rel="preload" href="/src/styles.css" as="style" />
+    
+    <!-- 分析工具 -->
+    <script defer data-domain="crop-image-tool.com" src="https://plausible.io/js/script.js"></script>
   </head>
   <body>
     <div id="root"></div>

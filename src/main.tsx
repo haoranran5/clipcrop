@@ -1,11 +1,14 @@
 
 import React from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App'
+import ReactDOM from 'react-dom/client'
+import LanguageRouter from './components/LanguageRouter'
 import './styles.css'
-import './i18n/setup'
 
-createRoot(document.getElementById('root')!).render(<App />)
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <LanguageRouter />
+  </React.StrictMode>,
+)
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(console.error))
