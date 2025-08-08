@@ -300,13 +300,14 @@ export default function App() {
             </div>
           ) : (
             <>
-              <GridOverlay showRuleOfThirds={showR3} showGolden={showGolden} />
+              <GridOverlay showRuleOfThirds={showR3} showGolden={showGolden} showCircle={circle} />
               <Cropper
                 image={imageSrc}
                 crop={crop}
                 zoom={zoom}
                 rotation={rotation}
                 aspect={circle ? 1 : aspect}
+                cropShape={circle ? 'round' : 'rect'}
                 onCropChange={setCrop}
                 onRotationChange={setRotation}
                 onZoomChange={setZoom}
@@ -407,15 +408,14 @@ export default function App() {
           </div>
 
           {queue.length>1 && (
-            {batchProgress && (<div className="group"><h4>Batch progress</h4><div className="small">{batchProgress.done} / {batchProgress.total}</div></div>)}
-          <div className="group">
-              <h4>{t('queue')}</h4>
-              <div className="small">Images: {queue.length}</div>
-              <div style={{display:'flex', gap:8}}>
-                <button className="ghost" onClick={()=>{ const i=Math.max(0, activeIdx-1); setActiveIdx(i); setImageSrc(queue[i])}}>{t('prev')}</button>
-                <button className="ghost" onClick={()=>{ const i=Math.min(queue.length-1, activeIdx+1); setActiveIdx(i); setImageSrc(queue[i])}}>{t('next')}</button>
+            <div className="group">
+                <h4>{t('queue')}</h4>
+                <div className="small">Images: {queue.length}</div>
+                <div style={{display:'flex', gap:8}}>
+                  <button className="ghost" onClick={()=>{ const i=Math.max(0, activeIdx-1); setActiveIdx(i); setImageSrc(queue[i])}}>{t('prev')}</button>
+                  <button className="ghost" onClick={()=>{ const i=Math.min(queue.length-1, activeIdx+1); setActiveIdx(i); setImageSrc(queue[i])}}>{t('next')}</button>
+                </div>
               </div>
-            </div>
           )}
 
           <SocialPreview src={imageSrc} />

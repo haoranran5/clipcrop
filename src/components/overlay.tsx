@@ -1,6 +1,6 @@
 
 import React from 'react'
-export function GridOverlay({ showRuleOfThirds, showGolden, color = 'rgba(124,192,255,0.6)' }: { showRuleOfThirds: boolean; showGolden: boolean; color?: string }) {
+export function GridOverlay({ showRuleOfThirds, showGolden, showCircle, color = 'rgba(124,192,255,0.6)' }: { showRuleOfThirds: boolean; showGolden: boolean; showCircle?: boolean; color?: string }) {
   return (
     <svg style={{position:'absolute', inset:0, pointerEvents:'none'}}>
       {showRuleOfThirds && (
@@ -15,6 +15,11 @@ export function GridOverlay({ showRuleOfThirds, showGolden, color = 'rgba(124,19
         <g stroke="rgba(52,211,153,0.6)" strokeWidth="1">
           <line x1="61.8%" y1="0" x2="61.8%" y2="100%" />
           <line x1="0" y1="61.8%" x2="100%" y2="61.8%" />
+        </g>
+      )}
+      {showCircle && (
+        <g stroke="rgba(255,255,255,0.3)" strokeWidth="2" fill="none">
+          <circle cx="50%" cy="50%" r="45%" />
         </g>
       )}
     </svg>
