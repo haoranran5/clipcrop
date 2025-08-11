@@ -1,49 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
-  <!-- 默认页面 (英文) -->
+  <!-- Main page -->
   <url>
     <loc>https://crop-image-tool.com/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://crop-image-tool.com/en"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://crop-image-tool.com/zh"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://crop-image-tool.com/es"/>
-  </url>
-  
-  <!-- 英文页面 -->
-  <url>
-    <loc>https://crop-image-tool.com/en</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://crop-image-tool.com/en"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://crop-image-tool.com/zh"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://crop-image-tool.com/es"/>
-  </url>
-  
-  <!-- 中文页面 -->
-  <url>
-    <loc>https://crop-image-tool.com/zh</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://crop-image-tool.com/en"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://crop-image-tool.com/zh"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://crop-image-tool.com/es"/>
-  </url>
-  
-  <!-- 西班牙语页面 -->
-  <url>
-    <loc>https://crop-image-tool.com/es</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://crop-image-tool.com/en"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://crop-image-tool.com/zh"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://crop-image-tool.com/es"/>
   </url>
   
 </urlset>
