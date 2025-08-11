@@ -1,6 +1,6 @@
 import React from 'react'
 
-// 改进的预设卡片组件
+// Enhanced Preset Card Component
 interface EnhancedPresetCardProps {
   preset: any
   isSelected: boolean
@@ -47,7 +47,7 @@ export const EnhancedPresetCard: React.FC<EnhancedPresetCardProps> = ({
   )
 }
 
-// 改进的滤镜预设组件
+// Enhanced Filter Preset Component
 interface FilterPresetProps {
   name: string
   icon: string
@@ -78,7 +78,7 @@ export const FilterPreset: React.FC<FilterPresetProps> = ({
   )
 }
 
-// 改进的导出选项组件
+// Enhanced Export Options Component
 interface ExportOptionsProps {
   format: string
   quality: number
@@ -93,14 +93,14 @@ export const ExportOptions: React.FC<ExportOptionsProps> = ({
   onQualityChange
 }) => {
   const formatInfo = {
-    png: { name: 'PNG', desc: '无损压缩，支持透明', icon: '🖼️' },
-    jpeg: { name: 'JPEG', desc: '有损压缩，文件小', icon: '📷' },
-    webp: { name: 'WebP', desc: '现代格式，体积小', icon: '🌐' }
+    png: { name: 'PNG', desc: 'Lossless compression, supports transparency', icon: '🖼️' },
+    jpeg: { name: 'JPEG', desc: 'Lossy compression, smaller files', icon: '📷' },
+    webp: { name: 'WebP', desc: 'Modern format, small size', icon: '🌐' }
   }
 
   return (
     <div className="export-options">
-      <h4>导出选项</h4>
+              <h4>Export Options</h4>
       
       <div className="format-selector">
         {Object.entries(formatInfo).map(([key, info]) => (
@@ -120,7 +120,7 @@ export const ExportOptions: React.FC<ExportOptionsProps> = ({
       
       {format === 'jpeg' && (
         <div className="quality-control">
-          <label>质量: {quality}%</label>
+                      <label>Quality: {quality}%</label>
           <input 
             type="range" 
             min="1" 
@@ -134,7 +134,7 @@ export const ExportOptions: React.FC<ExportOptionsProps> = ({
   )
 }
 
-// 改进的批量处理组件
+// Enhanced Batch Processing Component
 interface EnhancedBatchProcessorProps {
   queue: string[]
   onBatchComplete: (results: any[]) => void
@@ -154,10 +154,10 @@ export const EnhancedBatchProcessor: React.FC<EnhancedBatchProcessorProps> = ({
   const [customSizes, setCustomSizes] = React.useState<string>('')
 
   const sizePresets = [
-    { name: '头像尺寸', sizes: [128, 256, 512], icon: '👤' },
-    { name: '电商主图', sizes: [400, 800, 1200], icon: '🛒' },
-    { name: '社交媒体', sizes: [512, 1024, 2048], icon: '📱' },
-    { name: '高清打印', sizes: [1500, 3000, 4500], icon: '🖨️' }
+            { name: 'Avatar Sizes', sizes: [128, 256, 512], icon: '👤' },
+        { name: 'E-commerce Main', sizes: [400, 800, 1200], icon: '🛒' },
+        { name: 'Social Media', sizes: [512, 1024, 2048], icon: '📱' },
+        { name: 'High Res Print', sizes: [1500, 3000, 4500], icon: '🖨️' }
   ]
 
   const handleCustomSizes = () => {
@@ -170,10 +170,10 @@ export const EnhancedBatchProcessor: React.FC<EnhancedBatchProcessorProps> = ({
   return (
     <div className="enhanced-batch-processor">
       <div className="batch-header">
-        <h4>批量处理</h4>
+        <h4>Batch Processing</h4>
         <div className="batch-info">
-          <span className="file-count">{queue.length} 张图片</span>
-          <span className="size-count">{selectedSizes.length} 种尺寸</span>
+                      <span className="file-count">{queue.length} images</span>
+            <span className="size-count">{selectedSizes.length} sizes</span>
         </div>
       </div>
 
@@ -192,15 +192,15 @@ export const EnhancedBatchProcessor: React.FC<EnhancedBatchProcessorProps> = ({
       </div>
 
       <div className="custom-sizes">
-        <label>自定义尺寸 (用逗号分隔):</label>
+                    <label>Custom sizes (comma separated):</label>
         <div className="custom-input">
           <input 
             type="text" 
             value={customSizes}
             onChange={(e) => setCustomSizes(e.target.value)}
-            placeholder="例如: 100,200,300"
+                          placeholder="e.g.: 100,200,300"
           />
-          <button onClick={handleCustomSizes}>应用</button>
+                      <button onClick={handleCustomSizes}>Apply</button>
         </div>
       </div>
 
@@ -210,14 +210,14 @@ export const EnhancedBatchProcessor: React.FC<EnhancedBatchProcessorProps> = ({
           onClick={() => exportBatchZip(selectedSizes)}
           disabled={working || queue.length === 0}
         >
-          {working ? <LoadingSpinner size="small" /> : '开始批量处理'}
+                      {working ? <LoadingSpinner size="small" /> : 'Start Batch Processing'}
         </button>
       </div>
     </div>
   )
 }
 
-// 改进的社交预览组件
+// Enhanced Social Preview Component
 interface EnhancedSocialPreviewProps {
   src: string | null
   aspect: number
@@ -238,26 +238,26 @@ export const EnhancedSocialPreview: React.FC<EnhancedSocialPreviewProps> = ({
     { id: 'linkedin', name: 'LinkedIn', icon: '💼', color: '#0A66C2' },
     { id: 'facebook', name: 'Facebook', icon: '📘', color: '#1877F2' },
     { id: 'youtube', name: 'YouTube', icon: '📺', color: '#FF0000' },
-    { id: 'xiaohongshu', name: '小红书', icon: '📖', color: '#FF2442' },
-    { id: 'bilibili', name: 'B站', icon: '📺', color: '#00A1D6' }
+            { id: 'xiaohongshu', name: 'Xiaohongshu', icon: '📖', color: '#FF2442' },
+        { id: 'bilibili', name: 'Bilibili', icon: '📺', color: '#00A1D6' }
   ]
 
   return (
     <div className="enhanced-social-preview">
       <div className="preview-header">
-        <h4>社交平台预览</h4>
+        <h4>Social Platform Preview</h4>
         <div className="preview-controls">
           <button 
             className={`preview-mode ${!showComparison ? 'active' : ''}`}
             onClick={() => setShowComparison(false)}
           >
-            单平台预览
+            Single Platform
           </button>
           <button 
             className={`preview-mode ${showComparison ? 'active' : ''}`}
             onClick={() => setShowComparison(true)}
           >
-            对比预览
+            Comparison
           </button>
         </div>
       </div>
@@ -279,7 +279,7 @@ export const EnhancedSocialPreview: React.FC<EnhancedSocialPreviewProps> = ({
           </div>
           
                      <div className="preview-frame">
-             {/* 这里可以添加具体的平台预览组件 */}
+             {/* Platform preview components can be added here */}
              <div className="mock-preview">
                <div className="mock-header" style={{ backgroundColor: platforms.find(p => p.id === selectedPlatform)?.color }}>
                  <img 
@@ -293,9 +293,9 @@ export const EnhancedSocialPreview: React.FC<EnhancedSocialPreviewProps> = ({
                </div>
                <div className="mock-content" style={{ aspectRatio: aspect }}>
                  {src ? (
-                   <img src={src} alt="预览" />
+                   <img src={src} alt="Preview" />
                  ) : (
-                   <div className="placeholder">选择图片查看预览</div>
+                   <div className="placeholder">Select image to preview</div>
                  )}
                </div>
              </div>
@@ -318,9 +318,9 @@ export const EnhancedSocialPreview: React.FC<EnhancedSocialPreviewProps> = ({
                </div>
                <div className="comparison-content">
                  {src ? (
-                   <img src={src} alt={`${platform.name}预览`} />
+                   <img src={src} alt={`${platform.name} preview`} />
                  ) : (
-                   <div className="placeholder">无图片</div>
+                                       <div className="placeholder">No image</div>
                  )}
                </div>
              </div>
@@ -332,7 +332,7 @@ export const EnhancedSocialPreview: React.FC<EnhancedSocialPreviewProps> = ({
   )
 }
 
-// 加载动画组件
+// Loading Animation Component
 const LoadingSpinner: React.FC<{ size: 'small' | 'medium' | 'large' }> = ({ size }) => {
   const sizeMap = { small: '12px', medium: '16px', large: '24px' }
   return (

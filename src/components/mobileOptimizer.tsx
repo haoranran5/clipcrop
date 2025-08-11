@@ -6,7 +6,7 @@ interface MobileOptimizerProps {
 
 export const MobileOptimizer: React.FC<MobileOptimizerProps> = ({ children }) => {
   React.useEffect(() => {
-    // 防止双击缩放
+    // Prevent double-tap zoom
     let lastTouchEnd = 0
     const preventZoom = (e: TouchEvent) => {
       const now = new Date().getTime()
@@ -16,7 +16,7 @@ export const MobileOptimizer: React.FC<MobileOptimizerProps> = ({ children }) =>
       lastTouchEnd = now
     }
 
-    // 防止页面滚动
+    // Prevent page scrolling
     const preventScroll = (e: TouchEvent) => {
       if (e.touches.length > 1) {
         e.preventDefault()
@@ -35,7 +35,7 @@ export const MobileOptimizer: React.FC<MobileOptimizerProps> = ({ children }) =>
   return <>{children}</>
 }
 
-// 移动端检测
+  // Mobile detection
 export const useIsMobile = () => {
   const [isMobile, setIsMobile] = React.useState(false)
 
@@ -52,7 +52,7 @@ export const useIsMobile = () => {
   return isMobile
 }
 
-// 触摸手势支持
+    // Touch gesture support
 export const useTouchGestures = () => {
   const [touchStart, setTouchStart] = React.useState<{ x: number; y: number } | null>(null)
   const [touchEnd, setTouchEnd] = React.useState<{ x: number; y: number } | null>(null)
@@ -84,20 +84,20 @@ export const useTouchGestures = () => {
     if (isHorizontalSwipe) {
       if (Math.abs(distanceX) > minSwipeDistance) {
         if (distanceX > 0) {
-          // 向左滑动
+          // Swipe left
           console.log('Swipe left')
         } else {
-          // 向右滑动
+                      // Swipe right
           console.log('Swipe right')
         }
       }
     } else {
       if (Math.abs(distanceY) > minSwipeDistance) {
         if (distanceY > 0) {
-          // 向上滑动
+          // Swipe up
           console.log('Swipe up')
         } else {
-          // 向下滑动
+                      // Swipe down
           console.log('Swipe down')
         }
       }

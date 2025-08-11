@@ -1,7 +1,7 @@
 
 export type Preset = { platform: string; type: string; width: number; height: number; category?: string }
 export const presets: Preset[] = [
-  // 社交媒体
+  // Social Media
   { platform: "Instagram", type: "Post", width: 1080, height: 1080, category: "social" },
   { platform: "Instagram", type: "Story", width: 1080, height: 1920, category: "social" },
   { platform: "Twitter/X", type: "Banner", width: 1500, height: 500, category: "social" },

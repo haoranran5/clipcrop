@@ -17,7 +17,7 @@ export function GridOverlay({
 }) {
   return (
     <svg style={{position:'absolute', inset:0, pointerEvents:'none'}}>
-      {/* 三分法网格 */}
+      {/* Rule of Thirds Grid */}
       {showRuleOfThirds && (
         <g stroke={color} strokeWidth="1">
           <line x1="33.333%" y1="0" x2="33.333%" y2="100%" />
@@ -27,7 +27,7 @@ export function GridOverlay({
         </g>
       )}
       
-      {/* 黄金比例网格 */}
+              {/* Golden Ratio Grid */}
       {showGolden && (
         <g stroke="rgba(52,211,153,0.6)" strokeWidth="1">
           <line x1="61.8%" y1="0" x2="61.8%" y2="100%" />
@@ -35,21 +35,21 @@ export function GridOverlay({
         </g>
       )}
       
-      {/* 密集网格 */}
+              {/* Dense Grid */}
       {showGrid && (
         <g stroke="rgba(255,255,255,0.2)" strokeWidth="0.5">
-          {/* 垂直网格线 */}
+                      {/* Vertical Grid Lines */}
           {Array.from({length: 9}, (_, i) => (
             <line key={`v${i}`} x1={`${(i+1)*10}%`} y1="0" x2={`${(i+1)*10}%`} y2="100%" />
           ))}
-          {/* 水平网格线 */}
+                      {/* Horizontal Grid Lines */}
           {Array.from({length: 9}, (_, i) => (
             <line key={`h${i}`} x1="0" y1={`${(i+1)*10}%`} x2="100%" y2={`${(i+1)*10}%`} />
           ))}
         </g>
       )}
       
-      {/* 中心十字线 */}
+              {/* Center Crosshairs */}
       {showCenter && (
         <g stroke="rgba(255,255,255,0.8)" strokeWidth="1">
           <line x1="50%" y1="0" x2="50%" y2="100%" />
@@ -57,7 +57,7 @@ export function GridOverlay({
         </g>
       )}
       
-      {/* 圆形裁剪网格 */}
+              {/* Circle Crop Grid */}
       {showCircle && (
         <g stroke="rgba(255,255,255,0.3)" strokeWidth="2" fill="none">
           <circle cx="50%" cy="50%" r="45%" />

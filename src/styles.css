@@ -29,7 +29,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
 .badges{display:flex;gap:8px;flex-wrap:wrap}
 .badge{padding:4px 8px;border:1px solid var(--line);border-radius:999px;font-size:12px}
 
-/* 主题系统 */
+/* Theme System */
 [data-theme="light"] {
   color-scheme: light;
   --bg: #ffffff;
@@ -40,7 +40,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   --brand: #2563eb;
 }
 
-/* 主题切换按钮 */
+/* Theme Toggle Button */
 .theme-toggle {
   background: transparent;
   border: 1px solid var(--line);
@@ -60,7 +60,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   transform: scale(1.1);
 }
 
-/* 预设分类样式 */
+/* Preset Category Styles */
 .preset-categories {
   margin-bottom: 12px;
 }
@@ -144,7 +144,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   font-family: monospace;
 }
 
-/* 批量处理样式 */
+/* Batch Processing Styles */
 .batch-processor {
   margin-top: 12px;
 }
@@ -175,9 +175,9 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   transition: width 0.3s ease;
 }
 
-/* 移动端优化 */
+/* Mobile Optimization */
 @media (max-width: 768px) {
-  /* 主布局调整 */
+      /* Main Layout Adjustment */
   main {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
@@ -186,7 +186,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
     height: calc(100vh - 56px);
   }
   
-  /* 头部优化 */
+      /* Header Optimization */
   header {
     padding: 8px 0;
   }
@@ -219,7 +219,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
     font-size: 14px;
   }
   
-  /* 侧边栏优化 */
+      /* Sidebar Optimization */
   aside {
     border-left: none;
     border-top: 1px solid var(--line);
@@ -238,7 +238,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
     margin-bottom: 6px;
   }
   
-  /* 画布区域优化 */
+      /* Canvas Area Optimization */
   .canvas-wrap {
     height: 60vh;
     min-height: 250px;
@@ -250,7 +250,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
     font-size: 14px;
   }
   
-  /* 预设分类移动端优化 */
+      /* Preset Category Mobile Optimization */
   .category-tabs {
     justify-content: center;
     gap: 6px;
@@ -288,7 +288,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
     font-size: 9px;
   }
   
-  /* 表单控件优化 */
+      /* Form Control Optimization */
   .row {
     flex-direction: column;
     align-items: stretch;
@@ -309,11 +309,11 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
     margin: 8px 0;
   }
   
-  /* 按钮优化 */
+      /* Button Optimization */
   button {
     padding: 10px 12px;
     font-size: 14px;
-    min-height: 44px; /* 触摸友好 */
+    min-height: 44px; /* Touch-friendly */
   }
   
   .batch-actions {
@@ -324,13 +324,13 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
     width: 100%;
   }
   
-  /* 进度条优化 */
+      /* Progress Bar Optimization */
   .progress-bar {
     height: 6px;
     margin: 10px 0;
   }
   
-  /* 帮助模态框优化 */
+      /* Help Modal Optimization */
   .help-modal {
     padding: 16px;
   }
@@ -355,7 +355,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
     font-size: 14px;
   }
   
-  /* 底部优化 */
+      /* Footer Optimization */
   footer {
     padding: 8px 0;
   }
@@ -370,12 +370,12 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
     font-size: 11px;
   }
   
-  /* 触摸优化 */
+      /* Touch Optimization */
   button:active {
     transform: scale(0.98);
   }
   
-  /* 滚动优化 */
+      /* Scroll Optimization */
   aside::-webkit-scrollbar {
     width: 4px;
   }
@@ -389,7 +389,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
     border-radius: 2px;
   }
   
-  /* 安全区域适配 */
+      /* Safe Area Adaptation */
   @supports (padding: max(0px)) {
     main {
       padding-left: max(8px, env(safe-area-inset-left));
@@ -403,7 +403,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   }
 }
 
-/* 超小屏幕优化 */
+/* Extra Small Screen Optimization */
 @media (max-width: 480px) {
   .container {
     padding: 6px;
@@ -438,7 +438,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   }
 }
 
-/* 横屏模式优化 */
+/* Landscape Mode Optimization */
 @media (max-height: 500px) and (orientation: landscape) {
   main {
     grid-template-columns: 1fr 300px;
@@ -457,7 +457,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   }
 }
 
-/* 动画效果 */
+/* Animation Effects */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -467,7 +467,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   animation: fadeIn 0.3s ease;
 }
 
-/* 工具提示 */
+/* Tooltips */
 .tooltip {
   position: relative;
 }
@@ -488,14 +488,14 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   margin-bottom: 4px;
 }
 
-/* 移动端工具提示禁用 */
+/* Mobile Tooltip Disable */
 @media (max-width: 768px) {
   .tooltip:hover::after {
     display: none;
   }
 }
 
-/* 加载动画 */
+/* Loading Animation */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -506,7 +506,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   to { transform: translateX(0); opacity: 1; }
 }
 
-/* 进度条样式 */
+/* Progress Bar Styles */
 .progress-container {
   margin: 12px 0;
 }
@@ -524,7 +524,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   margin-top: 4px;
 }
 
-/* 用户引导样式 */
+/* User Guide Styles */
 .user-guide-overlay {
   position: fixed;
   inset: 0;
@@ -657,7 +657,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   border-top: 1px solid var(--line);
 }
 
-/* 快捷键样式 */
+/* Keyboard Shortcuts Styles */
 .shortcuts-overlay {
   position: fixed;
   inset: 0;
@@ -723,7 +723,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   font-size: 14px;
 }
 
-/* 错误边界样式 */
+/* Error Boundary Styles */
 .error-boundary {
   position: fixed;
   inset: 0;
@@ -749,7 +749,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   color: var(--muted);
 }
 
-/* 文件上传区域样式 */
+/* File Upload Zone Styles */
 .file-upload-zone {
   transition: all 0.3s ease;
 }
@@ -759,7 +759,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   box-shadow: 0 0 20px rgba(31, 139, 255, 0.3);
 }
 
-/* 响应式调整 */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .user-guide-modal,
   .shortcuts-modal {
@@ -789,7 +789,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   }
 }
 
-/* 增强的预设卡片样式 */
+/* Enhanced Preset Card Styles */
 .enhanced-preset-card {
   position: relative;
   padding: 12px;
@@ -882,7 +882,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   font-weight: bold;
 }
 
-/* 滤镜预设样式 */
+/* Filter Preset Styles */
 .filter-preset {
   display: flex;
   flex-direction: column;
@@ -922,7 +922,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
 }
 
-/* 导出选项样式 */
+/* Export Options Styles */
 .export-options {
   margin-top: 16px;
 }
@@ -985,7 +985,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   color: var(--muted);
 }
 
-/* 增强的批量处理样式 */
+/* Enhanced Batch Processing Styles */
 .enhanced-batch-processor {
   margin-top: 16px;
 }
@@ -1084,7 +1084,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   font-size: 12px;
 }
 
-/* 增强的社交预览样式 */
+/* Enhanced Social Preview Styles */
 .enhanced-social-preview {
   margin-top: 16px;
 }
@@ -1241,7 +1241,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   object-fit: cover;
 }
 
-/* AI 功能样式 */
+/* AI Feature Styles */
 .ai-crop-suggestion,
 .brand-color-extractor,
 .multi-platform-adapter,
@@ -1504,7 +1504,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   font-size: 12px;
 }
 
-/* 响应式调整 */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .size-presets {
     grid-template-columns: 1fr;
@@ -1531,7 +1531,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   }
 }
 
-/* 用户体验组件样式 */
+/* User Experience Component Styles */
 .smart-tips {
   margin-top: 16px;
   padding: 16px;
@@ -1602,7 +1602,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   font-weight: 500;
 }
 
-/* 快捷操作样式 */
+/* Quick Actions Styles */
 .quick-actions {
   margin-top: 16px;
 }
@@ -1657,7 +1657,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   text-align: center;
 }
 
-/* 进度指示器样式 */
+/* Progress Indicator Styles */
 .progress-indicator {
   margin: 16px 0;
   padding: 16px;
@@ -1738,7 +1738,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   background: #10b981;
 }
 
-/* 增强的拖拽区域样式 */
+/* Enhanced Drop Zone Styles */
 .enhanced-drop-zone {
   border: 2px dashed var(--line);
   border-radius: 16px;
@@ -1818,7 +1818,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   transform: translateY(-2px);
 }
 
-/* 键盘快捷键模态框样式 */
+/* Keyboard Shortcuts Modal Styles */
 .keyboard-shortcuts-modal {
   position: fixed;
   top: 0;
@@ -1910,7 +1910,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   border-left: 3px solid var(--brand);
 }
 
-/* 操作历史样式 */
+/* Action History Styles */
 .action-history {
   margin-top: 16px;
   padding: 16px;
@@ -2005,7 +2005,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   font-size: 12px;
 }
 
-/* 响应式调整 */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .actions-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -2030,7 +2030,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   }
 }
 
-/* 高级功能组件样式 */
+/* Advanced Feature Component Styles */
 .advanced-filters {
   margin-top: 16px;
   padding: 16px;
@@ -2146,7 +2146,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   cursor: pointer;
 }
 
-/* 边框和阴影效果样式 */
+/* Border and Shadow Effect Styles */
 .border-shadow-effects {
   margin-top: 16px;
   padding: 16px;
@@ -2268,7 +2268,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   border-color: var(--brand);
 }
 
-/* 水印系统样式 */
+/* Watermark System Styles */
 .watermark-system {
   margin-top: 16px;
   padding: 16px;
@@ -2437,7 +2437,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   border-color: var(--brand);
 }
 
-/* 导出预设管理样式 */
+/* Export Preset Management Styles */
 .export-preset-manager {
   margin-top: 16px;
   padding: 16px;
@@ -2602,7 +2602,7 @@ footer{border-top:1px solid var(--line);padding:12px 0;color:var(--muted)}
   font-size: 12px;
 }
 
-/* 响应式调整 */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .filter-presets-grid {
     grid-template-columns: repeat(2, 1fr);

@@ -35,16 +35,16 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
   }
 
   const batchPresets = [
-    { name: "头像尺寸", sizes: [128, 256, 512] },
-    { name: "电商主图", sizes: [400, 800, 1200] },
-    { name: "社交媒体", sizes: [512, 1024, 2048] },
-    { name: "高清打印", sizes: [1500, 3000, 4500] }
+    { name: "Avatar Sizes", sizes: [128, 256, 512] },
+    { name: "E-commerce Main", sizes: [400, 800, 1200] },
+    { name: "Social Media", sizes: [512, 1024, 2048] },
+    { name: "High Res Print", sizes: [1500, 3000, 4500] }
   ]
 
   return (
     <div className="batch-processor">
-      <h4>批量处理</h4>
-      <div className="small">已选择 {queue.length} 张图片</div>
+              <h4>Batch Processing</h4>
+        <div className="small">Selected {queue.length} images</div>
       
       {isProcessing && (
         <div className="progress-indicator">
@@ -55,7 +55,7 @@ export const BatchProcessor: React.FC<BatchProcessorProps> = ({
             />
           </div>
           <div className="small">
-            处理中... {currentIndex} / {queue.length * 3}
+            Processing... {currentIndex} / {queue.length * 3}
           </div>
         </div>
       )}

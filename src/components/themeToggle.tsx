@@ -15,7 +15,7 @@ export const ThemeToggle: React.FC = () => {
     <button 
       className="theme-toggle" 
       onClick={() => setIsDark(!isDark)}
-      title={isDark ? '切换到浅色模式' : '切换到深色模式'}
+              title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       {isDark ? '☀️' : '🌙'}
     </button>

@@ -13,12 +13,12 @@ export const PresetCategories: React.FC<PresetCategoriesProps> = ({
   const [activeCategory, setActiveCategory] = React.useState<string>('all')
   
   const categories = [
-    { id: 'all', name: '全部', icon: '📱' },
-    { id: 'social', name: '社交媒体', icon: '📱' },
-    { id: 'china', name: '中国平台', icon: '🇨🇳' },
-    { id: 'ecommerce', name: '电商平台', icon: '🛒' },
-    { id: 'professional', name: '专业平台', icon: '💼' },
-    { id: 'avatar', name: '头像专用', icon: '👤' }
+    { id: 'all', name: 'All', icon: '📱' },
+    { id: 'social', name: 'Social Media', icon: '📱' },
+    { id: 'china', name: 'Chinese Platforms', icon: '🇨🇳' },
+    { id: 'ecommerce', name: 'E-commerce', icon: '🛒' },
+    { id: 'professional', name: 'Professional', icon: '💼' },
+    { id: 'avatar', name: 'Avatars', icon: '👤' }
   ]
 
   const filteredPresets = activeCategory === 'all' 

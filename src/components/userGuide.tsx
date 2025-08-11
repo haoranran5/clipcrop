@@ -10,28 +10,28 @@ export const UserGuide: React.FC<UserGuideProps> = ({ isVisible, onClose }) => {
 
   const steps = [
     {
-      title: '上传图片',
-      description: '拖拽图片到画布区域，或点击选择文件',
+      title: 'Upload Image',
+      description: 'Drag image to canvas area, or click to select file',
       icon: '📁'
     },
     {
-      title: '选择预设',
-      description: '从右侧面板选择社交平台预设尺寸',
+      title: 'Select Preset',
+      description: 'Choose social platform preset size from right panel',
       icon: '📱'
     },
     {
-      title: '调整裁剪',
-      description: '拖拽调整裁剪区域，使用滚轮缩放',
+      title: 'Adjust Crop',
+      description: 'Drag to adjust crop area, use wheel to zoom',
       icon: '✂️'
     },
     {
-      title: '添加效果',
-      description: '调整滤镜、边框、阴影等效果',
+      title: 'Add Effects',
+      description: 'Adjust filters, borders, shadows and other effects',
       icon: '🎨'
     },
     {
-      title: '导出图片',
-      description: '点击下载按钮导出最终图片',
+      title: 'Export Image',
+      description: 'Click download button to export final image',
       icon: '💾'
     }
   ]
@@ -40,13 +40,13 @@ export const UserGuide: React.FC<UserGuideProps> = ({ isVisible, onClose }) => {
     <div className="user-guide-overlay" onClick={onClose}>
       <div className="user-guide-modal" onClick={e => e.stopPropagation()}>
         <div className="user-guide-header">
-          <h2>欢迎使用 ClipCrop！</h2>
+          <h2>Welcome to ClipCrop!</h2>
           <button className="close-button" onClick={onClose}>×</button>
         </div>
         
         <div className="user-guide-content">
           <p style={{ marginBottom: '24px', color: 'var(--muted)' }}>
-            快速了解如何使用 ClipCrop 裁剪和编辑图片
+            Quick guide on how to use ClipCrop to crop and edit images
           </p>
           
           <div className="guide-steps">
@@ -62,23 +62,23 @@ export const UserGuide: React.FC<UserGuideProps> = ({ isVisible, onClose }) => {
           </div>
           
           <div className="guide-tips">
-            <h4>💡 小贴士</h4>
+            <h4>💡 Tips</h4>
             <ul>
-              <li>按 <kbd>?</kbd> 键查看快捷键</li>
-              <li>按 <kbd>Ctrl/Cmd + S</kbd> 快速导出</li>
-              <li>支持批量处理多张图片</li>
-              <li>所有处理都在本地完成，保护隐私</li>
+              <li>Press <kbd>?</kbd> to view keyboard shortcuts</li>
+              <li>Press <kbd>Ctrl/Cmd + S</kbd> to export quickly</li>
+              <li>Supports batch processing of multiple images</li>
+              <li>All processing is done locally to protect privacy</li>
             </ul>
           </div>
         </div>
         
         <div className="user-guide-footer">
           <button className="primary" onClick={onClose}>
-            开始使用
+            Get Started
           </button>
           <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <input type="checkbox" />
-            <span>不再显示此引导</span>
+            <span>Don't show this guide again</span>
           </label>
         </div>
       </div>
@@ -114,13 +114,13 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
       return (
         <div className="error-boundary">
           <div className="error-content">
-            <h2>😵 出现了一些问题</h2>
-            <p>页面遇到了意外错误，请刷新页面重试</p>
+                    <h2>😵 Something went wrong</h2>
+        <p>The page encountered an unexpected error, please refresh and try again</p>
             <button 
               className="primary"
               onClick={() => window.location.reload()}
             >
-              刷新页面
+              Refresh Page
             </button>
           </div>
         </div>
@@ -139,26 +139,26 @@ interface FileValidationProps {
 
 export const FileValidator: React.FC<FileValidationProps> = ({ file, onValid, onInvalid }) => {
   React.useEffect(() => {
-    // 检查文件类型
+    // Check file type
     if (!file.type.startsWith('image/')) {
-      onInvalid('请选择图片文件')
+              onInvalid('Please select an image file')
       return
     }
 
-    // 检查文件大小 (10MB)
+    // Check file size (10MB)
     const maxSize = 10 * 1024 * 1024
     if (file.size > maxSize) {
-      onInvalid('文件大小不能超过 10MB')
+              onInvalid('File size cannot exceed 10MB')
       return
     }
 
-    // 检查文件扩展名
+    // Check file extension
     const allowedExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.bmp']
     const fileName = file.name.toLowerCase()
     const hasValidExtension = allowedExtensions.some(ext => fileName.endsWith(ext))
     
     if (!hasValidExtension) {
-      onInvalid('不支持的图片格式，请选择 JPG、PNG、WebP 等格式')
+              onInvalid('Unsupported image format, please select JPG, PNG, WebP, etc.')
       return
     }
 
@@ -177,21 +177,21 @@ export const KeyboardShortcuts: React.FC<KeyboardShortcutsProps> = ({ isVisible,
   if (!isVisible) return null
 
   const shortcuts = [
-    { key: '?', description: '显示/隐藏快捷键帮助' },
-    { key: 'Ctrl/Cmd + S', description: '快速导出图片' },
-    { key: 'Escape', description: '关闭对话框' },
-    { key: 'Delete', description: '删除当前图片（批量模式）' },
-    { key: '鼠标滚轮', description: '缩放图片' },
-    { key: 'Shift + 滚轮', description: '旋转图片' },
-    { key: '拖拽', description: '移动裁剪区域' },
-    { key: '空格键', description: '临时隐藏辅助线' }
+          { key: '?', description: 'Show/hide keyboard shortcuts help' },
+          { key: 'Ctrl/Cmd + S', description: 'Quick export image' },
+      { key: 'Escape', description: 'Close dialog' },
+          { key: 'Delete', description: 'Delete current image (batch mode)' },
+      { key: 'Mouse wheel', description: 'Zoom image' },
+          { key: 'Shift + wheel', description: 'Rotate image' },
+      { key: 'Drag', description: 'Move crop area' },
+          { key: 'Space', description: 'Temporarily hide guides' }
   ]
 
   return (
     <div className="shortcuts-overlay" onClick={onClose}>
       <div className="shortcuts-modal" onClick={e => e.stopPropagation()}>
         <div className="shortcuts-header">
-          <h3>键盘快捷键</h3>
+          <h3>Keyboard Shortcuts</h3>
           <button className="close-button" onClick={onClose}>×</button>
         </div>
         

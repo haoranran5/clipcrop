@@ -1,6 +1,6 @@
 import React from 'react'
 
-// AI智能裁剪建议
+// AI Smart Crop Suggestions
 interface AICropSuggestionProps {
   imageSrc: string | null
   onApplySuggestion: (crop: { x: number; y: number; width: number; height: number }) => void
@@ -17,13 +17,13 @@ export const AICropSuggestion: React.FC<AICropSuggestionProps> = ({
     if (!imageSrc) return
     
     setIsAnalyzing(true)
-    // 模拟AI分析过程
+    // Simulate AI analysis process
     setTimeout(() => {
       const mockSuggestions = [
-        { name: '主体居中', type: 'center', confidence: 0.95 },
-        { name: '黄金比例', type: 'golden', confidence: 0.87 },
-        { name: '三分法', type: 'thirds', confidence: 0.82 },
-        { name: '对称构图', type: 'symmetry', confidence: 0.78 }
+                  { name: 'Subject Center', type: 'center', confidence: 0.95 },
+          { name: 'Golden Ratio', type: 'golden', confidence: 0.87 },
+          { name: 'Rule of Thirds', type: 'thirds', confidence: 0.82 },
+          { name: 'Symmetrical', type: 'symmetry', confidence: 0.78 }
       ]
       setSuggestions(mockSuggestions)
       setIsAnalyzing(false)
@@ -33,13 +33,13 @@ export const AICropSuggestion: React.FC<AICropSuggestionProps> = ({
   return (
     <div className="ai-crop-suggestion">
       <div className="suggestion-header">
-        <h4>🤖 AI 智能建议</h4>
+        <h4>🤖 AI Smart Suggestions</h4>
         <button 
           className="analyze-btn"
           onClick={analyzeImage}
           disabled={isAnalyzing || !imageSrc}
         >
-          {isAnalyzing ? '分析中...' : '分析图片'}
+                      {isAnalyzing ? 'Analyzing...' : 'Analyze Image'}
         </button>
       </div>
       
@@ -50,14 +50,14 @@ export const AICropSuggestion: React.FC<AICropSuggestionProps> = ({
               <div className="suggestion-info">
                 <div className="suggestion-name">{suggestion.name}</div>
                 <div className="suggestion-confidence">
-                  置信度: {Math.round(suggestion.confidence * 100)}%
+                  Confidence: {Math.round(suggestion.confidence * 100)}%
                 </div>
               </div>
               <button 
                 className="apply-btn"
                 onClick={() => onApplySuggestion({ x: 0, y: 0, width: 100, height: 100 })}
               >
-                应用
+                Apply
               </button>
             </div>
           ))}
@@ -67,7 +67,7 @@ export const AICropSuggestion: React.FC<AICropSuggestionProps> = ({
   )
 }
 
-// 品牌色彩提取器
+// Brand Color Extractor
 interface BrandColorExtractorProps {
   imageSrc: string | null
   onColorSelect: (color: string) => void
@@ -82,7 +82,7 @@ export const BrandColorExtractor: React.FC<BrandColorExtractorProps> = ({
   const extractColors = () => {
     if (!imageSrc) return
     
-    // 模拟颜色提取
+    // Simulate color extraction
     const mockColors = [
       '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
       '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'
@@ -93,9 +93,9 @@ export const BrandColorExtractor: React.FC<BrandColorExtractorProps> = ({
   return (
     <div className="brand-color-extractor">
       <div className="extractor-header">
-        <h4>🎨 品牌色彩提取</h4>
+        <h4>🎨 Brand Color Extraction</h4>
         <button onClick={extractColors} disabled={!imageSrc}>
-          提取色彩
+                      Extract Colors
         </button>
       </div>
       
@@ -118,7 +118,7 @@ export const BrandColorExtractor: React.FC<BrandColorExtractorProps> = ({
   )
 }
 
-// 一键多平台适配
+// One-click Multi-platform Adaptation
 interface MultiPlatformAdapterProps {
   imageSrc: string | null
   onAdapt: (platforms: string[]) => void
@@ -132,7 +132,7 @@ export const MultiPlatformAdapter: React.FC<MultiPlatformAdapterProps> = ({
 
   const platformGroups = [
     {
-      name: '社交媒体',
+              name: 'Social Media',
       platforms: [
         { id: 'instagram', name: 'Instagram', icon: '📸' },
         { id: 'twitter', name: 'Twitter/X', icon: '🐦' },
@@ -141,20 +141,20 @@ export const MultiPlatformAdapter: React.FC<MultiPlatformAdapterProps> = ({
       ]
     },
     {
-      name: '中国平台',
+              name: 'Chinese Platforms',
       platforms: [
-        { id: 'xiaohongshu', name: '小红书', icon: '📖' },
-        { id: 'bilibili', name: 'B站', icon: '📺' },
-        { id: 'douyin', name: '抖音', icon: '🎵' },
-        { id: 'weibo', name: '微博', icon: '📱' }
+                  { id: 'xiaohongshu', name: 'Xiaohongshu', icon: '📖' },
+          { id: 'bilibili', name: 'Bilibili', icon: '📺' },
+          { id: 'douyin', name: 'Douyin', icon: '🎵' },
+          { id: 'weibo', name: 'Weibo', icon: '📱' }
       ]
     },
     {
-      name: '电商平台',
+              name: 'E-commerce Platforms',
       platforms: [
-        { id: 'taobao', name: '淘宝', icon: '🛒' },
-        { id: 'jd', name: '京东', icon: '🛒' },
-        { id: 'pdd', name: '拼多多', icon: '🛒' },
+                  { id: 'taobao', name: 'Taobao', icon: '🛒' },
+          { id: 'jd', name: 'JD', icon: '🛒' },
+          { id: 'pdd', name: 'Pinduoduo', icon: '🛒' },
         { id: 'amazon', name: 'Amazon', icon: '📦' }
       ]
     }
@@ -179,13 +179,13 @@ export const MultiPlatformAdapter: React.FC<MultiPlatformAdapterProps> = ({
   return (
     <div className="multi-platform-adapter">
       <div className="adapter-header">
-        <h4>🚀 一键多平台适配</h4>
+        <h4>🚀 One-click Multi-platform Adaptation</h4>
         <button 
           className="adapt-btn"
           onClick={() => onAdapt(selectedPlatforms)}
           disabled={selectedPlatforms.length === 0 || !imageSrc}
         >
-          生成 {selectedPlatforms.length} 个版本
+                      Generate {selectedPlatforms.length} versions
         </button>
       </div>
 
@@ -198,7 +198,7 @@ export const MultiPlatformAdapter: React.FC<MultiPlatformAdapterProps> = ({
                 className="select-all-btn"
                 onClick={() => selectAll(group.name)}
               >
-                全选
+                Select All
               </button>
             </div>
             
@@ -225,7 +225,7 @@ export const MultiPlatformAdapter: React.FC<MultiPlatformAdapterProps> = ({
   )
 }
 
-// 智能水印生成器
+// Smart Watermark Generator
 interface SmartWatermarkGeneratorProps {
   onWatermarkGenerated: (watermark: { text: string; style: any }) => void
 }
@@ -237,11 +237,11 @@ export const SmartWatermarkGenerator: React.FC<SmartWatermarkGeneratorProps> = (
   const [selectedStyle, setSelectedStyle] = React.useState('minimal')
 
   const watermarkStyles = [
-    { id: 'minimal', name: '简约', preview: '简约水印' },
-    { id: 'elegant', name: '优雅', preview: '优雅水印' },
-    { id: 'bold', name: '粗体', preview: '粗体水印' },
-    { id: 'gradient', name: '渐变', preview: '渐变水印' },
-    { id: 'outline', name: '描边', preview: '描边水印' }
+            { id: 'minimal', name: 'Minimal', preview: 'Minimal watermark' },
+        { id: 'elegant', name: 'Elegant', preview: 'Elegant watermark' },
+        { id: 'bold', name: 'Bold', preview: 'Bold watermark' },
+        { id: 'gradient', name: 'Gradient', preview: 'Gradient watermark' },
+        { id: 'outline', name: 'Outline', preview: 'Outline watermark' }
   ]
 
   const generateWatermark = () => {
@@ -264,20 +264,20 @@ export const SmartWatermarkGenerator: React.FC<SmartWatermarkGeneratorProps> = (
   return (
     <div className="smart-watermark-generator">
       <div className="generator-header">
-        <h4>💎 智能水印生成</h4>
+        <h4>💎 Smart Watermark Generation</h4>
       </div>
 
       <div className="watermark-input">
         <input
           type="text"
-          placeholder="输入水印文字..."
+                      placeholder="Enter watermark text..."
           value={watermarkText}
           onChange={(e) => setWatermarkText(e.target.value)}
         />
       </div>
 
       <div className="style-selector">
-        <label>选择样式:</label>
+                    <label>Select Style:</label>
         <div className="style-options">
           {watermarkStyles.map(style => (
             <div
@@ -297,13 +297,13 @@ export const SmartWatermarkGenerator: React.FC<SmartWatermarkGeneratorProps> = (
         onClick={generateWatermark}
         disabled={!watermarkText.trim()}
       >
-        生成水印
+                    Generate Watermark
       </button>
     </div>
   )
 }
 
-// 实时性能监控
+// Real-time Performance Monitoring
 interface PerformanceMonitorProps {
   imageSize: number
   processingTime: number
@@ -326,22 +326,22 @@ export const PerformanceMonitor: React.FC<PerformanceMonitorProps> = ({
   return (
     <div className="performance-monitor">
       <div className="monitor-header">
-        <h4>⚡ 性能监控</h4>
+        <h4>⚡ Performance Monitor</h4>
       </div>
 
       <div className="performance-metrics">
         <div className="metric-item">
-          <div className="metric-label">图片大小</div>
+                      <div className="metric-label">Image Size</div>
           <div className="metric-value">{formatFileSize(imageSize)}</div>
         </div>
         
         <div className="metric-item">
-          <div className="metric-label">处理时间</div>
+                      <div className="metric-label">Processing Time</div>
           <div className="metric-value">{processingTime}ms</div>
         </div>
         
         <div className="metric-item">
-          <div className="metric-label">内存使用</div>
+                      <div className="metric-label">Memory Usage</div>
           <div className="metric-value">{formatFileSize(memoryUsage)}</div>
         </div>
       </div>
@@ -349,11 +349,11 @@ export const PerformanceMonitor: React.FC<PerformanceMonitorProps> = ({
       <div className="performance-tips">
         <div className="tip-item">
           <span className="tip-icon">💡</span>
-          <span className="tip-text">大图片建议先压缩再处理</span>
+                      <span className="tip-text">Large images should be compressed first</span>
         </div>
         <div className="tip-item">
           <span className="tip-icon">⚡</span>
-          <span className="tip-text">WebP格式可节省50%空间</span>
+                      <span className="tip-text">WebP format can save 50% space</span>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-// 智能提示系统
+// Smart Tips System
 interface SmartTipsProps {
   currentStep: string
   userActions: string[]
@@ -46,7 +46,7 @@ export const SmartTips: React.FC<SmartTipsProps> = ({
   return (
     <div className="smart-tips">
       <div className="tips-header">
-        <h4>💡 智能提示</h4>
+        <h4>💡 Smart Tips</h4>
         <button 
           className="close-tips"
           onClick={() => setShowTips(false)}
@@ -63,7 +63,7 @@ export const SmartTips: React.FC<SmartTipsProps> = ({
             onClick={() => onTipAction(tip.action)}
           >
             <span className="tip-text">{tip.text}</span>
-            <span className="tip-action">点击试试</span>
+            <span className="tip-action">Try it</span>
           </div>
         ))}
       </div>
@@ -71,7 +71,7 @@ export const SmartTips: React.FC<SmartTipsProps> = ({
   )
 }
 
-// 快捷操作面板
+// Quick Actions Panel
 interface QuickActionsProps {
   onAction: (action: string, params?: any) => void
   hasImage: boolean
@@ -86,41 +86,41 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
   const quickActions = [
     {
       id: 'instagram-square',
-      name: 'Instagram方形',
+              name: 'Instagram Square',
       icon: '📸',
       action: 'preset',
       params: { width: 1080, height: 1080, platform: 'Instagram' }
     },
     {
       id: 'linkedin-banner',
-      name: 'LinkedIn横幅',
+              name: 'LinkedIn Banner',
       icon: '💼',
       action: 'preset',
       params: { width: 1584, height: 396, platform: 'LinkedIn' }
     },
     {
       id: 'twitter-header',
-      name: 'Twitter头图',
+              name: 'Twitter Header',
       icon: '🐦',
       action: 'preset',
       params: { width: 1500, height: 500, platform: 'Twitter' }
     },
     {
       id: 'xiaohongshu',
-      name: '小红书',
+              name: 'Xiaohongshu',
       icon: '📖',
       action: 'preset',
-      params: { width: 1080, height: 1440, platform: '小红书' }
+              params: { width: 1080, height: 1440, platform: 'Xiaohongshu' }
     },
     {
       id: 'auto-center',
-      name: 'AI居中',
+              name: 'AI Center',
       icon: '🎯',
       action: 'auto-center'
     },
     {
       id: 'batch-export',
-      name: '批量导出',
+              name: 'Batch Export',
       icon: '📦',
       action: 'batch-export'
     }
@@ -129,7 +129,7 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
   return (
     <div className="quick-actions">
       <div className="actions-header">
-        <h4>⚡ 快捷操作</h4>
+        <h4>⚡ Quick Actions</h4>
       </div>
       
       <div className="actions-grid">
@@ -150,7 +150,7 @@ export const QuickActions: React.FC<QuickActionsProps> = ({
   )
 }
 
-// 进度指示器
+// Progress Indicator
 interface ProgressIndicatorProps {
   currentStep: number
   totalSteps: number
@@ -187,7 +187,7 @@ export const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
   )
 }
 
-// 文件拖拽区域增强
+// Enhanced File Drop Zone
 interface EnhancedDropZoneProps {
   onFilesDrop: (files: File[]) => void
   isDragOver: boolean
@@ -244,35 +244,35 @@ export const EnhancedDropZone: React.FC<EnhancedDropZoneProps> = ({
         </div>
         
         <div className="drop-text">
-          <h3>拖拽图片到这里</h3>
-          <p>支持 {supportedFormats.join(', ')} 格式</p>
-          <p>最大文件大小: {(maxFileSize / 1024 / 1024).toFixed(1)}MB</p>
+                  <h3>Drag images here</h3>
+        <p>Supports {supportedFormats.join(', ')} formats</p>
+        <p>Max file size: {(maxFileSize / 1024 / 1024).toFixed(1)}MB</p>
         </div>
         
         <div className="drop-features">
           <div className="feature-item">
             <span className="feature-icon">🎯</span>
-            <span className="feature-text">AI自动居中</span>
+            <span className="feature-text">AI Auto Center</span>
           </div>
           <div className="feature-item">
             <span className="feature-icon">📱</span>
-            <span className="feature-text">多平台适配</span>
+            <span className="feature-text">Multi-platform</span>
           </div>
           <div className="feature-item">
             <span className="feature-icon">⚡</span>
-            <span className="feature-text">批量处理</span>
+            <span className="feature-text">Batch Process</span>
           </div>
         </div>
         
         <button className="select-files-btn">
-          选择文件
+          Select Files
         </button>
       </div>
     </div>
   )
 }
 
-// 键盘快捷键提示
+// Keyboard Shortcuts Tips
 interface KeyboardShortcutsProps {
   onClose: () => void
 }
@@ -281,22 +281,22 @@ export const KeyboardShortcuts: React.FC<KeyboardShortcutsProps> = ({
   onClose
 }) => {
   const shortcuts = [
-    { key: 'Ctrl + V', action: '粘贴图片' },
-    { key: 'Ctrl + Z', action: '撤销操作' },
-    { key: 'Ctrl + Y', action: '重做操作' },
-    { key: 'Space', action: '切换网格显示' },
-    { key: 'C', action: '自动居中' },
-    { key: 'R', action: '重置缩放' },
-    { key: '1-9', action: '快速选择预设' },
-    { key: 'Enter', action: '导出图片' },
-    { key: 'Esc', action: '关闭对话框' }
+    { key: 'Ctrl + V', action: 'Paste image' },
+          { key: 'Ctrl + Z', action: 'Undo' },
+      { key: 'Ctrl + Y', action: 'Redo' },
+          { key: 'Space', action: 'Toggle grid' },
+      { key: 'C', action: 'Auto center' },
+          { key: 'R', action: 'Reset zoom' },
+      { key: '1-9', action: 'Quick preset select' },
+          { key: 'Enter', action: 'Export image' },
+      { key: 'Esc', action: 'Close dialog' }
   ]
 
   return (
     <div className="keyboard-shortcuts-modal">
       <div className="shortcuts-content">
         <div className="shortcuts-header">
-          <h3>⌨️ 键盘快捷键</h3>
+          <h3>⌨️ Keyboard Shortcuts</h3>
           <button className="close-btn" onClick={onClose}>✕</button>
         </div>
         
@@ -310,14 +310,14 @@ export const KeyboardShortcuts: React.FC<KeyboardShortcutsProps> = ({
         </div>
         
         <div className="shortcuts-tip">
-          💡 提示：在裁剪区域按空格键可以快速切换网格显示
+          💡 Tip: Press spacebar in crop area to quickly toggle grid display
         </div>
       </div>
     </div>
   )
 }
 
-// 操作历史记录
+// Action History
 interface ActionHistoryProps {
   history: Array<{
     id: string
@@ -344,21 +344,21 @@ export const ActionHistory: React.FC<ActionHistoryProps> = ({
   return (
     <div className="action-history">
       <div className="history-header">
-        <h4>📝 操作历史</h4>
+        <h4>📝 Action History</h4>
         <div className="history-controls">
           <button 
             className="undo-btn"
             disabled={history.length === 0}
             onClick={() => history.length > 0 && onUndo(history[history.length - 1].id)}
           >
-            ↩️ 撤销
+            ↩️ Undo
           </button>
           <button 
             className="redo-btn"
             disabled={history.length === 0}
             onClick={() => history.length > 0 && onRedo(history[history.length - 1].id)}
           >
-            ↪️ 重做
+            ↪️ Redo
           </button>
         </div>
       </div>
@@ -376,7 +376,7 @@ export const ActionHistory: React.FC<ActionHistoryProps> = ({
         
         {history.length === 0 && (
           <div className="history-empty">
-            暂无操作记录
+            No action history
           </div>
         )}
       </div>

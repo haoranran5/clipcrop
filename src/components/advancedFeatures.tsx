@@ -1,6 +1,6 @@
 import React from 'react'
 
-// 高级滤镜系统
+// Advanced Filter System
 interface AdvancedFiltersProps {
   filters: any
   onFilterChange: (filters: any) => void
@@ -14,32 +14,32 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
 }) => {
   const filterPresets = [
     {
-      name: '复古',
+              name: 'Vintage',
       icon: '📷',
       filters: { brightness: 110, contrast: 120, saturation: 80, sepia: 30, grayscale: 0 }
     },
     {
-      name: '黑白',
+              name: 'Black & White',
       icon: '⚫',
       filters: { brightness: 100, contrast: 110, saturation: 0, sepia: 0, grayscale: 100 }
     },
     {
-      name: '暖色',
+              name: 'Warm',
       icon: '🌅',
       filters: { brightness: 105, contrast: 105, saturation: 120, sepia: 15, grayscale: 0 }
     },
     {
-      name: '冷色',
+              name: 'Cool',
       icon: '❄️',
       filters: { brightness: 95, contrast: 110, saturation: 90, sepia: 0, grayscale: 0 }
     },
     {
-      name: '高对比',
+              name: 'High Contrast',
       icon: '⚡',
       filters: { brightness: 100, contrast: 140, saturation: 100, sepia: 0, grayscale: 0 }
     },
     {
-      name: '柔和',
+              name: 'Soft',
       icon: '🌸',
       filters: { brightness: 105, contrast: 90, saturation: 110, sepia: 0, grayscale: 0 }
     }
@@ -52,7 +52,7 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
   return (
     <div className="advanced-filters">
       <div className="filters-header">
-        <h4>🎨 高级滤镜</h4>
+        <h4>🎨 Advanced Filters</h4>
         <button 
           className="reset-filters"
           onClick={() => onFilterChange({
@@ -64,7 +64,7 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
             blur: 0
           })}
         >
-          重置
+                      Reset
         </button>
       </div>
 
@@ -89,7 +89,7 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
 
       <div className="filter-controls">
         <div className="filter-slider">
-          <label>亮度: {filters.brightness}%</label>
+                      <label>Brightness: {filters.brightness}%</label>
           <input
             type="range"
             min="0"
@@ -100,7 +100,7 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
         </div>
 
         <div className="filter-slider">
-          <label>对比度: {filters.contrast}%</label>
+                      <label>Contrast: {filters.contrast}%</label>
           <input
             type="range"
             min="0"
@@ -111,7 +111,7 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
         </div>
 
         <div className="filter-slider">
-          <label>饱和度: {filters.saturation}%</label>
+                      <label>Saturation: {filters.saturation}%</label>
           <input
             type="range"
             min="0"
@@ -122,7 +122,7 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
         </div>
 
         <div className="filter-slider">
-          <label>灰度: {filters.grayscale}%</label>
+                      <label>Grayscale: {filters.grayscale}%</label>
           <input
             type="range"
             min="0"
@@ -133,7 +133,7 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
         </div>
 
         <div className="filter-slider">
-          <label>棕褐色: {filters.sepia}%</label>
+                      <label>Sepia: {filters.sepia}%</label>
           <input
             type="range"
             min="0"
@@ -144,7 +144,7 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
         </div>
 
         <div className="filter-slider">
-          <label>模糊: {filters.blur}px</label>
+                      <label>Blur: {filters.blur}px</label>
           <input
             type="range"
             min="0"
@@ -158,7 +158,7 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
   )
 }
 
-// 边框和阴影效果
+// Border and Shadow Effects
 interface BorderShadowEffectsProps {
   border: any
   shadow: any
@@ -173,30 +173,30 @@ export const BorderShadowEffects: React.FC<BorderShadowEffectsProps> = ({
   onShadowChange
 }) => {
   const borderStyles = [
-    { name: '无边框', value: 'none' },
-    { name: '实线', value: 'solid' },
-    { name: '虚线', value: 'dashed' },
-    { name: '点线', value: 'dotted' }
+            { name: 'No Border', value: 'none' },
+        { name: 'Solid', value: 'solid' },
+          { name: 'Dashed', value: 'dashed' },
+      { name: 'Dotted', value: 'dotted' }
   ]
 
   const shadowPresets = [
-    { name: '无阴影', value: { enable: false, blur: 0, offsetX: 0, offsetY: 0, color: '#00000055' } },
-    { name: '轻微', value: { enable: true, blur: 8, offsetX: 0, offsetY: 4, color: '#00000033' } },
-    { name: '中等', value: { enable: true, blur: 16, offsetX: 0, offsetY: 8, color: '#00000044' } },
-    { name: '强烈', value: { enable: true, blur: 24, offsetX: 0, offsetY: 12, color: '#00000066' } }
+            { name: 'No Shadow', value: { enable: false, blur: 0, offsetX: 0, offsetY: 0, color: '#00000055' } },
+        { name: 'Light', value: { enable: true, blur: 8, offsetX: 0, offsetY: 4, color: '#00000033' } },
+        { name: 'Medium', value: { enable: true, blur: 16, offsetX: 0, offsetY: 8, color: '#00000044' } },
+        { name: 'Strong', value: { enable: true, blur: 24, offsetX: 0, offsetY: 12, color: '#00000066' } }
   ]
 
   return (
     <div className="border-shadow-effects">
       <div className="effects-header">
-        <h4>🖼️ 边框与阴影</h4>
+        <h4>🖼️ Border & Shadow</h4>
       </div>
 
       <div className="border-section">
-        <h5>边框设置</h5>
+                  <h5>Border Settings</h5>
         
         <div className="border-style-selector">
-          <label>边框样式:</label>
+                      <label>Border Style:</label>
           <select
             value={border.style || 'none'}
             onChange={(e) => onBorderChange({ ...border, style: e.target.value })}
@@ -212,7 +212,7 @@ export const BorderShadowEffects: React.FC<BorderShadowEffectsProps> = ({
         {border.style !== 'none' && (
           <>
             <div className="border-control">
-              <label>边框宽度: {border.width || 0}px</label>
+              <label>Border Width: {border.width || 0}px</label>
               <input
                 type="range"
                 min="0"
@@ -223,7 +223,7 @@ export const BorderShadowEffects: React.FC<BorderShadowEffectsProps> = ({
             </div>
 
             <div className="border-control">
-              <label>边框颜色:</label>
+              <label>Border Color:</label>
               <input
                 type="color"
                 value={border.color || '#ffffff'}
@@ -235,7 +235,7 @@ export const BorderShadowEffects: React.FC<BorderShadowEffectsProps> = ({
       </div>
 
       <div className="shadow-section">
-        <h5>阴影效果</h5>
+                  <h5>Shadow Effects</h5>
         
         <div className="shadow-presets">
           {shadowPresets.map((preset, index) => (
@@ -252,7 +252,7 @@ export const BorderShadowEffects: React.FC<BorderShadowEffectsProps> = ({
         {shadow.enable && (
           <div className="shadow-controls">
             <div className="shadow-control">
-              <label>模糊半径: {shadow.blur}px</label>
+              <label>Blur Radius: {shadow.blur}px</label>
               <input
                 type="range"
                 min="0"
@@ -263,7 +263,7 @@ export const BorderShadowEffects: React.FC<BorderShadowEffectsProps> = ({
             </div>
 
             <div className="shadow-control">
-              <label>水平偏移: {shadow.offsetX}px</label>
+              <label>Horizontal Offset: {shadow.offsetX}px</label>
               <input
                 type="range"
                 min="-20"
@@ -274,7 +274,7 @@ export const BorderShadowEffects: React.FC<BorderShadowEffectsProps> = ({
             </div>
 
             <div className="shadow-control">
-              <label>垂直偏移: {shadow.offsetY}px</label>
+              <label>Vertical Offset: {shadow.offsetY}px</label>
               <input
                 type="range"
                 min="-20"
@@ -285,7 +285,7 @@ export const BorderShadowEffects: React.FC<BorderShadowEffectsProps> = ({
             </div>
 
             <div className="shadow-control">
-              <label>阴影颜色:</label>
+              <label>Shadow Color:</label>
               <input
                 type="color"
                 value={shadow.color}
@@ -299,7 +299,7 @@ export const BorderShadowEffects: React.FC<BorderShadowEffectsProps> = ({
   )
 }
 
-// 水印系统
+// Watermark System
 interface WatermarkSystemProps {
   watermark: any
   onWatermarkChange: (watermark: any) => void
@@ -312,11 +312,11 @@ export const WatermarkSystem: React.FC<WatermarkSystemProps> = ({
   const [showLogoUpload, setShowLogoUpload] = React.useState(false)
 
   const watermarkPositions = [
-    { name: '左上', value: 'top-left' },
-    { name: '右上', value: 'top-right' },
-    { name: '左下', value: 'bottom-left' },
-    { name: '右下', value: 'bottom-right' },
-    { name: '居中', value: 'center' }
+            { name: 'Top Left', value: 'top-left' },
+        { name: 'Top Right', value: 'top-right' },
+        { name: 'Bottom Left', value: 'bottom-left' },
+        { name: 'Bottom Right', value: 'bottom-right' },
+        { name: 'Center', value: 'center' }
   ]
 
   const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -336,7 +336,7 @@ export const WatermarkSystem: React.FC<WatermarkSystemProps> = ({
   return (
     <div className="watermark-system">
       <div className="watermark-header">
-        <h4>💎 水印设置</h4>
+        <h4>💎 Watermark Settings</h4>
       </div>
 
       <div className="watermark-tabs">
@@ -344,30 +344,30 @@ export const WatermarkSystem: React.FC<WatermarkSystemProps> = ({
           className={`watermark-tab ${!showLogoUpload ? 'active' : ''}`}
           onClick={() => setShowLogoUpload(false)}
         >
-          文字水印
+          Text Watermark
         </button>
         <button
           className={`watermark-tab ${showLogoUpload ? 'active' : ''}`}
           onClick={() => setShowLogoUpload(true)}
         >
-         图片水印
+                   Image Watermark
         </button>
       </div>
 
       {!showLogoUpload ? (
         <div className="text-watermark">
           <div className="watermark-control">
-            <label>水印文字:</label>
+            <label>Watermark Text:</label>
             <input
               type="text"
-              placeholder="输入水印文字..."
+                              placeholder="Enter watermark text..."
               value={watermark.text || ''}
               onChange={(e) => onWatermarkChange({ ...watermark, text: e.target.value })}
             />
           </div>
 
           <div className="watermark-control">
-            <label>字体大小: {watermark.fontSize || 24}px</label>
+            <label>Font Size: {watermark.fontSize || 24}px</label>
             <input
               type="range"
               min="12"
@@ -378,7 +378,7 @@ export const WatermarkSystem: React.FC<WatermarkSystemProps> = ({
           </div>
 
           <div className="watermark-control">
-            <label>透明度: {Math.round((watermark.opacity || 0.8) * 100)}%</label>
+            <label>Opacity: {Math.round((watermark.opacity || 0.8) * 100)}%</label>
             <input
               type="range"
               min="0"
@@ -389,7 +389,7 @@ export const WatermarkSystem: React.FC<WatermarkSystemProps> = ({
           </div>
 
           <div className="watermark-control">
-            <label>文字颜色:</label>
+            <label>Text Color:</label>
             <input
               type="color"
               value={watermark.color || '#ffffff'}
@@ -400,7 +400,7 @@ export const WatermarkSystem: React.FC<WatermarkSystemProps> = ({
       ) : (
         <div className="logo-watermark">
           <div className="logo-upload">
-            <label>上传Logo:</label>
+            <label>Upload Logo:</label>
             <input
               type="file"
               accept="image/*"
@@ -411,11 +411,11 @@ export const WatermarkSystem: React.FC<WatermarkSystemProps> = ({
           {watermark.logo?.src && (
             <>
               <div className="logo-preview">
-                <img src={watermark.logo.src} alt="Logo预览" />
+                <img src={watermark.logo.src} alt="Logo preview" />
               </div>
 
               <div className="watermark-control">
-                <label>Logo宽度: {watermark.logo.width || 128}px</label>
+                <label>Logo Width: {watermark.logo.width || 128}px</label>
                 <input
                   type="range"
                   min="32"
@@ -429,7 +429,7 @@ export const WatermarkSystem: React.FC<WatermarkSystemProps> = ({
               </div>
 
               <div className="watermark-control">
-                <label>Logo透明度: {Math.round((watermark.logo.opacity || 0.8) * 100)}%</label>
+                <label>Logo Opacity: {Math.round((watermark.logo.opacity || 0.8) * 100)}%</label>
                 <input
                   type="range"
                   min="0"
@@ -447,7 +447,7 @@ export const WatermarkSystem: React.FC<WatermarkSystemProps> = ({
       )}
 
       <div className="watermark-position">
-        <label>水印位置:</label>
+                    <label>Watermark Position:</label>
         <div className="position-buttons">
           {watermarkPositions.map(position => (
             <button
@@ -464,7 +464,7 @@ export const WatermarkSystem: React.FC<WatermarkSystemProps> = ({
   )
 }
 
-// 导出预设管理
+// Export Preset Management
 interface ExportPresetManagerProps {
   presets: any[]
   onPresetSave: (preset: any) => void
@@ -496,28 +496,28 @@ export const ExportPresetManager: React.FC<ExportPresetManagerProps> = ({
   return (
     <div className="export-preset-manager">
       <div className="preset-header">
-        <h4>💾 导出预设</h4>
+        <h4>💾 Export Presets</h4>
         <button
           className="save-preset-btn"
           onClick={() => setShowSaveDialog(true)}
         >
-          保存当前设置
+                      Save Current Settings
         </button>
       </div>
 
       {showSaveDialog && (
         <div className="save-preset-dialog">
           <div className="dialog-content">
-            <h5>保存预设</h5>
+            <h5>Save Preset</h5>
             <input
               type="text"
-              placeholder="输入预设名称..."
+                              placeholder="Enter preset name..."
               value={newPresetName}
               onChange={(e) => setNewPresetName(e.target.value)}
             />
             <div className="dialog-actions">
-              <button onClick={handleSavePreset}>保存</button>
-              <button onClick={() => setShowSaveDialog(false)}>取消</button>
+              <button onClick={handleSavePreset}>Save</button>
+              <button onClick={() => setShowSaveDialog(false)}>Cancel</button>
             </div>
           </div>
         </div>
@@ -537,13 +537,13 @@ export const ExportPresetManager: React.FC<ExportPresetManagerProps> = ({
                 className="load-preset-btn"
                 onClick={() => onPresetLoad(preset)}
               >
-                加载
+                Load
               </button>
               <button
                 className="delete-preset-btn"
                 onClick={() => onPresetDelete(preset.id)}
               >
-                删除
+                Delete
               </button>
             </div>
           </div>
@@ -551,7 +551,7 @@ export const ExportPresetManager: React.FC<ExportPresetManagerProps> = ({
 
         {presets.length === 0 && (
           <div className="no-presets">
-            暂无保存的预设
+            No saved presets
           </div>
         )}
       </div>
