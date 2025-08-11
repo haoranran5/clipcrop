@@ -12,6 +12,8 @@ import { ThemeToggle } from './components/themeToggle'
 import { BatchProcessor } from './components/batchProcessor'
 import { PresetCategories } from './components/presetCategories'
 import { MobileOptimizer, useIsMobile } from './components/mobileOptimizer'
+import { LoadingSpinner, ProgressBar, Toast, FileUploadZone } from './components/loadingStates'
+import { UserGuide, ErrorBoundary, FileValidator, KeyboardShortcuts } from './components/userGuide'
 import i18n from './i18n/setup'
 
 type Format = 'png' | 'jpeg' | 'webp'
@@ -54,7 +56,11 @@ export default function App() {
   const [queue, setQueue] = useState<string[]>([])
   const [activeIdx, setActiveIdx] = useState(0)
   const [showHelp, setShowHelp] = useState(false)
+  const [showUserGuide, setShowUserGuide] = useState(false)
   const [batchProgress, setBatchProgress] = useState<{done:number,total:number}|null>(null)
+  const [toast, setToast] = useState<{message: string, type: 'success' | 'error' | 'info' | 'warning'} | null>(null)
+  const [isDragOver, setIsDragOver] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   // Load settings
   React.useEffect(() => {
@@ -108,7 +114,10 @@ export default function App() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === '?') setShowHelp(s => !s)
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); exportImage() }
-      if (e.key === 'Escape') setShowHelp(false)
+      if (e.key === 'Escape') { 
+        setShowHelp(false)
+        setShowUserGuide(false)
+      }
       if (e.key === 'Delete' && queue.length > 1) {
         const newQueue = queue.filter((_, i) => i !== activeIdx)
         setQueue(newQueue)
@@ -130,51 +139,89 @@ export default function App() {
 
   const onCropComplete = useCallback((_c:any, pixels:any) => setCroppedAreaPixels(pixels), [])
 
-  const onFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []).filter(f => f.type.startsWith('image/'))
-    if (!files.length) return
-    const urls: string[] = []
-    for (const f of files) { const fixed = await fixExifOrientation(f as File); urls.push(await readFileAsImage(fixed)) }
-    setQueue(urls); setActiveIdx(0); setImageSrc(urls[0])
+  const onFile = async (files: File[]) => {
+    setIsLoading(true)
+    try {
+      const imageFiles = files.filter(f => f.type.startsWith('image/'))
+      if (!imageFiles.length) {
+        setToast({ message: '请选择图片文件', type: 'error' })
+        return
+      }
+      
+      const urls: string[] = []
+      for (const f of imageFiles) { 
+        const fixed = await fixExifOrientation(f as File); 
+        urls.push(await readFileAsImage(fixed)) 
+      }
+      setQueue(urls); 
+      setActiveIdx(0); 
+      setImageSrc(urls[0])
+      setToast({ message: `成功加载 ${urls.length} 张图片`, type: 'success' })
+    } catch (error) {
+      setToast({ message: '图片加载失败，请重试', type: 'error' })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const preventDefaults = (e: React.DragEvent) => { e.preventDefault(); e.stopPropagation() }
+  
+  const onDragOver = (e: React.DragEvent) => {
+    preventDefaults(e)
+    setIsDragOver(true)
+  }
+  
+  const onDragLeave = (e: React.DragEvent) => {
+    preventDefaults(e)
+    setIsDragOver(false)
+  }
+  
   const onDrop = useCallback(async (e: React.DragEvent) => {
     preventDefaults(e)
-    const files = Array.from(e.dataTransfer.files || []).filter(f => f.type.startsWith('image/'))
-    if (!files.length) return
-    const urls: string[] = []
-    for (const f of files) { const fixed = await fixExifOrientation(f as File); urls.push(await readFileAsImage(fixed)) }
-    setQueue(urls); setActiveIdx(0); setImageSrc(urls[0])
+    setIsDragOver(false)
+    const files = Array.from(e.dataTransfer.files || [])
+    await onFile(files)
   }, [])
 
   const exportImage = useCallback(async () => {
-    if (!imageSrc || !croppedAreaPixels) return
-    const outSize = diameter ? Number(diameter) : undefined
-    const opts:any = {
-      rotation, format, quality: 0.92,
-      mask: circle ? 'circle' : (mask),
-      radius,
-      outSize,
-      borderColor, borderWidth,
-      padding: pad,
-      background: bg,
-      shadow: shadow.enable ? { color: shadow.color, blur: shadow.blur, offsetX: shadow.offsetX, offsetY: shadow.offsetY } : null,
-      watermarkText: wmText.enable && wmText.text ? { text: wmText.text, font: wmText.font, color: wmText.color, alpha: 1, x: wmText.x, y: wmText.y } : null,
-      watermarkImage: wmLogo.enable && wmLogo.img ? { img: wmLogo.img, alpha: wmLogo.alpha, x: wmLogo.x, y: wmLogo.y, width: wmLogo.w, height: wmLogo.h } : null,
-      filters, feather
+    if (!imageSrc || !croppedAreaPixels) {
+      setToast({ message: '请先选择图片', type: 'warning' })
+      return
     }
-    let blob: Blob
+    
+    setWorking(true)
     try {
-      blob = await getCroppedImage(imageSrc, croppedAreaPixels, opts)
-    } catch (e) {
-      // fallback: remove feather/filters/shadow if any issue
-      const fallback = { ...opts, feather: 0, filters: null, shadow: null }
-      blob = await getCroppedImage(imageSrc, croppedAreaPixels, fallback)
+      const outSize = diameter ? Number(diameter) : undefined
+      const opts:any = {
+        rotation, format, quality: 0.92,
+        mask: circle ? 'circle' : (mask),
+        radius,
+        outSize,
+        borderColor, borderWidth,
+        padding: pad,
+        background: bg,
+        shadow: shadow.enable ? { color: shadow.color, blur: shadow.blur, offsetX: shadow.offsetX, offsetY: shadow.offsetY } : null,
+        watermarkText: wmText.enable && wmText.text ? { text: wmText.text, font: wmText.font, color: wmText.color, alpha: 1, x: wmText.x, y: wmText.y } : null,
+        watermarkImage: wmLogo.enable && wmLogo.img ? { img: wmLogo.img, alpha: wmLogo.alpha, x: wmLogo.x, y: wmLogo.y, width: wmLogo.w, height: wmLogo.h } : null,
+        filters, feather
+      }
+      let blob: Blob
+      try {
+        blob = await getCroppedImage(imageSrc, croppedAreaPixels, opts)
+      } catch (e) {
+        // fallback: remove feather/filters/shadow if any issue
+        const fallback = { ...opts, feather: 0, filters: null, shadow: null }
+        blob = await getCroppedImage(imageSrc, croppedAreaPixels, fallback)
+      }
+      const ext = (opts.mask !== 'rect' && format === 'jpeg') ? 'png' : (format === 'jpeg' ? 'jpg' : format)
+      const ts = Date.now()
+      saveAs(blob, `${filePrefix}-${lastPreset}-${ext === 'jpg' ? 'jpeg' : ext}-${ts}.${ext}`)
+      setToast({ message: '图片导出成功！', type: 'success' })
+    } catch (error) {
+      setToast({ message: '导出失败，请重试', type: 'error' })
+    } finally {
+      setWorking(false)
     }
-    const ext = (opts.mask !== 'rect' && format === 'jpeg') ? 'png' : (format === 'jpeg' ? 'jpg' : format)
-    const ts = Date.now()
-    saveAs(blob, `${filePrefix}-${lastPreset}-${ext === 'jpg' ? 'jpeg' : ext}-${ts}.${ext}`)
   }, [imageSrc, croppedAreaPixels, rotation, format, circle, mask, radius, diameter, borderColor, borderWidth, pad, bg, shadow, wmText, wmLogo, filters, feather])
 
   const exportBatchZip = useCallback(async (sizes: number[]) => {
@@ -284,8 +331,9 @@ export default function App() {
   }
 
   return (
-    <MobileOptimizer>
-      <div className={isMobile ? 'mobile-layout' : ''}>
+    <ErrorBoundary>
+      <MobileOptimizer>
+        <div className={isMobile ? 'mobile-layout' : ''}>
       <header>
         <div className="container topbar">
           <div className="brand">
@@ -294,6 +342,7 @@ export default function App() {
           </div>
           <div className="langs">
             <ThemeToggle />
+            <button className="ghost" onClick={() => setShowUserGuide(true)} title="使用指南">📖</button>
             <button className="ghost" onClick={() => handleLanguageChange('en')}>EN</button>
             <button className="ghost" onClick={() => handleLanguageChange('zh')}>中文</button>
             <button className="ghost" onClick={() => handleLanguageChange('es')}>ES</button>
@@ -301,20 +350,21 @@ export default function App() {
         </div>
       </header>
 
-      <main onDrop={onDrop} onDragOver={(e)=>{e.preventDefault()}} onDragEnter={(e)=>{e.preventDefault()}}>
+      <main onDrop={onDrop} onDragOver={onDragOver} onDragLeave={onDragLeave}>
         <section className="canvas-wrap" style={{filter:`brightness(${filters.brightness}%) contrast(${filters.contrast}%) saturate(${filters.saturation}%) grayscale(${filters.grayscale}%) sepia(${filters.sepia}%) blur(${filters.blur}px)`}} onClick={(e)=>{
           const r=(e.target as HTMLElement).getBoundingClientRect();
           if (wmText.enable) setWmText({...wmText, x: Math.round(e.clientX - r.left), y: Math.round(e.clientY - r.top)})
           if (wmLogo.enable) setWmLogo({...wmLogo, x: Math.round(e.clientX - r.left), y: Math.round(e.clientY - r.top)})
         }}>
           {!imageSrc ? (
-            <div className="dropzone">
-              <p><b>{t('hint')}</b></p>
-              <input type="file" accept="image/*" multiple onChange={onFile} />
-              <div className="badges" style={{justifyContent:'center', marginTop:8}}>
-                <div className="badge">Fast</div><div className="badge">Private</div><div className="badge">Free</div>
-              </div>
-            </div>
+            <FileUploadZone
+              onFileSelect={onFile}
+              isDragOver={isDragOver}
+              onDragOver={onDragOver}
+              onDragLeave={onDragLeave}
+              onDrop={onDrop}
+              isLoading={isLoading}
+            />
           ) : (
             <>
               <GridOverlay 
@@ -460,21 +510,19 @@ export default function App() {
       </main>
 
       {showHelp && (
-        <div className="help-modal" onClick={()=>setShowHelp(false)}>
-          <div className="help-card" onClick={e=>e.stopPropagation()}>
-            <h3>Shortcuts</h3>
-            <ul>
-              <li><b>?</b> toggle this help</li>
-              <li><b>Ctrl/Cmd + S</b> export</li>
-              <li><b>Escape</b> close help</li>
-              <li><b>Delete</b> remove current image (batch mode)</li>
-              <li><b>Mouse wheel</b> zoom</li>
-              <li><b>Shift + wheel</b> rotate</li>
-              <li><b>Drag</b> move crop</li>
-            </ul>
-            <div className="small">Click anywhere to close</div>
-          </div>
-        </div>
+        <KeyboardShortcuts isVisible={showHelp} onClose={() => setShowHelp(false)} />
+      )}
+      
+      {showUserGuide && (
+        <UserGuide isVisible={showUserGuide} onClose={() => setShowUserGuide(false)} />
+      )}
+      
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
       )}
 
       <footer className="container">
@@ -483,8 +531,9 @@ export default function App() {
           <div className="badge">{t('features')}</div>
           <div className="badge">{t('seo_badges')}</div>
         </div>
-      </footer>
+              </footer>
       </div>
-    </MobileOptimizer>
+      </MobileOptimizer>
+    </ErrorBoundary>
   )
 }
