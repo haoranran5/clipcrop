@@ -2,29 +2,29 @@
   "name": "clipcrop",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "file-saver": "^2.0.5",
-    "i18next": "^23.7.11",
     "jszip": "^3.10.1",
+    "next": "^14.2.0",
     "pica": "^9.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-easy-crop": "^5.0.6",
-    "react-i18next": "^13.5.0",
-    "react-router-dom": "^7.8.0"
+    "react-easy-crop": "^5.0.6"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.7",
+    "@types/node": "^20.0.0",
     "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.24",
-    "@vitejs/plugin-react": "^4.2.0",
-    "typescript": "^5.4.0",
-    "vite": "^5.2.0"
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.2.0",
+    "typescript": "^5.4.0"
   },
   "engines": {
     "node": ">=18.0.0"
