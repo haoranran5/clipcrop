@@ -6,7 +6,6 @@ import { presets, Preset } from './components/presets'
 import { getCroppedImage, readFileAsImage, fixExifOrientation } from './components/utils'
 import { saveAs } from 'file-saver'
 import { GridOverlay } from './components/overlay'
-import { ThemeToggle } from './components/themeToggle'
 
 type Format = 'png' | 'jpeg' | 'webp'
 
@@ -76,9 +75,6 @@ export default function App() {
             <div className="brand">
               <img src="/icons/favicon-192.png" alt="ClipCrop" width="32" height="32" />
               <h1>ClipCrop</h1>
-            </div>
-            <div className="controls">
-              <ThemeToggle />
             </div>
           </div>
         </div>

@@ -32,37 +32,6 @@ button.primary{background:var(--brand);border-color:var(--brand);color:white}
 .dropzone{border:2px dashed #2a3442;border-radius:14px;padding:20px;text-align:center}
 input[type='range']{width:60%}
 
-/* Theme System */
-[data-theme="light"] {
-  color-scheme: light;
-  --bg: #ffffff;
-  --panel: #f8fafc;
-  --line: #e2e8f0;
-  --text: #1e293b;
-  --muted: #64748b;
-  --brand: #2563eb;
-}
-
-/* Theme Toggle Button */
-.theme-toggle {
-  background: transparent;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 16px;
-}
-
-.theme-toggle:hover {
-  background: var(--panel);
-  transform: scale(1.1);
-}
-
 /* Preset Grid */
 .preset-grid {
   display: grid;
@@ -185,12 +154,6 @@ input[type='range']{width:60%}
   }
   
   .brand h1 {
-    font-size: 14px;
-  }
-  
-  .theme-toggle {
-    width: 36px;
-    height: 36px;
     font-size: 14px;
   }
 }
