@@ -1,8 +1,23 @@
 
 import React from 'react'
-export function GridOverlay({ showRuleOfThirds, showGolden, showCircle, color = 'rgba(124,192,255,0.6)' }: { showRuleOfThirds: boolean; showGolden: boolean; showCircle?: boolean; color?: string }) {
+export function GridOverlay({ 
+  showRuleOfThirds, 
+  showGolden, 
+  showCircle, 
+  showGrid = false,
+  showCenter = false,
+  color = 'rgba(124,192,255,0.6)' 
+}: { 
+  showRuleOfThirds: boolean; 
+  showGolden: boolean; 
+  showCircle?: boolean; 
+  showGrid?: boolean;
+  showCenter?: boolean;
+  color?: string 
+}) {
   return (
     <svg style={{position:'absolute', inset:0, pointerEvents:'none'}}>
+      {/* 三分法网格 */}
       {showRuleOfThirds && (
         <g stroke={color} strokeWidth="1">
           <line x1="33.333%" y1="0" x2="33.333%" y2="100%" />
@@ -11,12 +26,38 @@ export function GridOverlay({ showRuleOfThirds, showGolden, showCircle, color = 
           <line x1="0" y1="66.666%" x2="100%" y2="66.666%" />
         </g>
       )}
+      
+      {/* 黄金比例网格 */}
       {showGolden && (
         <g stroke="rgba(52,211,153,0.6)" strokeWidth="1">
           <line x1="61.8%" y1="0" x2="61.8%" y2="100%" />
           <line x1="0" y1="61.8%" x2="100%" y2="61.8%" />
         </g>
       )}
+      
+      {/* 密集网格 */}
+      {showGrid && (
+        <g stroke="rgba(255,255,255,0.2)" strokeWidth="0.5">
+          {/* 垂直网格线 */}
+          {Array.from({length: 9}, (_, i) => (
+            <line key={`v${i}`} x1={`${(i+1)*10}%`} y1="0" x2={`${(i+1)*10}%`} y2="100%" />
+          ))}
+          {/* 水平网格线 */}
+          {Array.from({length: 9}, (_, i) => (
+            <line key={`h${i}`} x1="0" y1={`${(i+1)*10}%`} x2="100%" y2={`${(i+1)*10}%`} />
+          ))}
+        </g>
+      )}
+      
+      {/* 中心十字线 */}
+      {showCenter && (
+        <g stroke="rgba(255,255,255,0.8)" strokeWidth="1">
+          <line x1="50%" y1="0" x2="50%" y2="100%" />
+          <line x1="0" y1="50%" x2="100%" y2="50%" />
+        </g>
+      )}
+      
+      {/* 圆形裁剪网格 */}
       {showCircle && (
         <g stroke="rgba(255,255,255,0.3)" strokeWidth="2" fill="none">
           <circle cx="50%" cy="50%" r="45%" />

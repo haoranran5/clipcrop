@@ -45,7 +45,9 @@ export default function App() {
   const [wmLogo, setWmLogo] = useState<{enable:boolean, src?:string, img?:HTMLImageElement, alpha:number, x:number, y:number, w:number, h:number}>({ enable:false, alpha:0.8, x:16, y:16, w:128, h:128 })
 
   const [showR3, setShowR3] = useState(true)
-  const [showGolden, setShowGolden] = useState(false)
+  const [showGolden, setShowGolden] = useState(true)
+  const [showGrid, setShowGrid] = useState(false)
+  const [showCenter, setShowCenter] = useState(false)
   const [progress, setProgress] = useState(0)
   const [working, setWorking] = useState(false)
 
@@ -315,7 +317,13 @@ export default function App() {
             </div>
           ) : (
             <>
-              <GridOverlay showRuleOfThirds={showR3} showGolden={showGolden} showCircle={circle} />
+              <GridOverlay 
+                showRuleOfThirds={showR3} 
+                showGolden={showGolden} 
+                showCircle={circle}
+                showGrid={showGrid}
+                showCenter={showCenter}
+              />
               <Cropper
                 image={imageSrc}
                 crop={crop}
@@ -430,8 +438,10 @@ export default function App() {
           {batchProgress && (<div className="group"><h4>Batch progress</h4><div className="small">{batchProgress.done} / {batchProgress.total}</div></div>)}
           <div className="group">
             <h4>{t('overlay')}</h4>
-            <label className="row"><span>{t('grid')}</span><input type="checkbox" checked={showR3} onChange={e=>setShowR3(e.target.checked)} /></label>
-            <label className="row"><span>{t('golden')}</span><input type="checkbox" checked={showGolden} onChange={e=>setShowGolden(e.target.checked)} /></label>
+            <label className="row"><span>三分法</span><input type="checkbox" checked={showR3} onChange={e=>setShowR3(e.target.checked)} /></label>
+            <label className="row"><span>黄金比例</span><input type="checkbox" checked={showGolden} onChange={e=>setShowGolden(e.target.checked)} /></label>
+            <label className="row"><span>密集网格</span><input type="checkbox" checked={showGrid} onChange={e=>setShowGrid(e.target.checked)} /></label>
+            <label className="row"><span>中心十字</span><input type="checkbox" checked={showCenter} onChange={e=>setShowCenter(e.target.checked)} /></label>
           </div>
 
           {queue.length>1 && (
