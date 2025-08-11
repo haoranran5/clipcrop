@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 // 智能提示系统
 interface SmartTipsProps {
@@ -12,6 +13,7 @@ export const SmartTips: React.FC<SmartTipsProps> = ({
   userActions,
   onTipAction
 }) => {
+  const { t } = useTranslation()
   const [tips, setTips] = React.useState<any[]>([])
   const [showTips, setShowTips] = React.useState(true)
 
@@ -19,19 +21,19 @@ export const SmartTips: React.FC<SmartTipsProps> = ({
     const generateTips = () => {
       const tipMap: { [key: string]: any[] } = {
         'upload': [
-          { id: 'drag-drop', text: '💡 拖拽图片到这里，或点击选择文件', action: 'upload' },
-          { id: 'paste', text: '📋 也可以直接粘贴图片 (Ctrl+V)', action: 'paste' },
-          { id: 'batch', text: '📁 支持批量上传多张图片', action: 'batch' }
+          { id: 'drag-drop', text: t('tips.dragDrop'), action: 'upload' },
+          { id: 'paste', text: t('tips.paste'), action: 'paste' },
+          { id: 'batch', text: t('tips.batch'), action: 'batch' }
         ],
         'crop': [
-          { id: 'auto-center', text: '🎯 点击"自动居中"让AI帮你定位主体', action: 'auto-center' },
-          { id: 'grid', text: '📐 开启网格辅助线，精确对齐', action: 'grid' },
-          { id: 'zoom', text: '🔍 滚轮缩放，拖拽移动', action: 'zoom' }
+          { id: 'auto-center', text: t('tips.autoCenter'), action: 'auto-center' },
+          { id: 'grid', text: t('tips.grid'), action: 'grid' },
+          { id: 'zoom', text: t('tips.zoom'), action: 'zoom' }
         ],
         'export': [
-          { id: 'batch-export', text: '📦 批量导出多个尺寸，一键打包下载', action: 'batch-export' },
-          { id: 'webp', text: '⚡ 选择WebP格式，文件更小', action: 'webp' },
-          { id: 'preview', text: '👀 预览不同平台的显示效果', action: 'preview' }
+          { id: 'batch-export', text: t('tips.batchExport'), action: 'batch-export' },
+          { id: 'webp', text: t('tips.webp'), action: 'webp' },
+          { id: 'preview', text: t('tips.preview'), action: 'preview' }
         ]
       }
       

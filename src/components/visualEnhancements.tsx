@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 // 改进的预设卡片组件
 interface EnhancedPresetCardProps {
@@ -14,6 +15,7 @@ export const EnhancedPresetCard: React.FC<EnhancedPresetCardProps> = ({
   onClick,
   isPopular = false
 }) => {
+  const { t } = useTranslation()
   return (
     <div 
       className={`enhanced-preset-card ${isSelected ? 'selected' : ''} ${isPopular ? 'popular' : ''}`}
@@ -33,7 +35,7 @@ export const EnhancedPresetCard: React.FC<EnhancedPresetCardProps> = ({
           {preset.platform === '京东' && '🛒'}
           {!['Instagram', 'Twitter/X', 'LinkedIn', 'Facebook', 'YouTube', '小红书', 'B站', '抖音', '淘宝', '京东'].includes(preset.platform) && '📱'}
         </div>
-        {isPopular && <div className="popular-badge">🔥 热门</div>}
+        {isPopular && <div className="popular-badge">{t('popular')}</div>}
       </div>
       
       <div className="preset-info">
@@ -282,18 +284,14 @@ export const EnhancedSocialPreview: React.FC<EnhancedSocialPreviewProps> = ({
              {/* 这里可以添加具体的平台预览组件 */}
              <div className="mock-preview">
                <div className="mock-header" style={{ backgroundColor: platforms.find(p => p.id === selectedPlatform)?.color }}>
-                 <div className="platform-logo" style={{ 
-                   width: '24px', 
-                   height: '24px', 
-                   borderRadius: '50%', 
-                   background: 'white',
-                   display: 'flex',
-                   alignItems: 'center',
-                   justifyContent: 'center',
-                   fontSize: '12px'
-                 }}>
-                   {platforms.find(p => p.id === selectedPlatform)?.icon}
-                 </div>
+                 <img 
+                   src={`/icons/platforms/${platforms.find(p => p.id === selectedPlatform)?.id}.svg`}
+                   style={{ 
+                     width: '24px', 
+                     height: '24px'
+                   }}
+                   alt={platforms.find(p => p.id === selectedPlatform)?.name}
+                 />
                </div>
                <div className="mock-content" style={{ aspectRatio: aspect }}>
                  {src ? (
@@ -311,19 +309,14 @@ export const EnhancedSocialPreview: React.FC<EnhancedSocialPreviewProps> = ({
            {platforms.slice(0, 6).map(platform => (
              <div key={platform.id} className="comparison-item">
                <div className="comparison-header">
-                 <div className="platform-logo" style={{ 
-                   width: '20px', 
-                   height: '20px', 
-                   borderRadius: '50%', 
-                   background: platform.color,
-                   display: 'flex',
-                   alignItems: 'center',
-                   justifyContent: 'center',
-                   fontSize: '10px',
-                   color: 'white'
-                 }}>
-                   {platform.icon}
-                 </div>
+                 <img 
+                   src={`/icons/platforms/${platform.id}.svg`}
+                   style={{ 
+                     width: '20px', 
+                     height: '20px'
+                   }}
+                   alt={platform.name}
+                 />
                </div>
                <div className="comparison-content">
                  {src ? (

@@ -33,5 +33,51 @@
   "darkMode": "Dark mode",
   "lightMode": "Light mode",
   "features": "Fast \u00b7 Private \u00b7 Free",
-  "seo_badges": "Crop \u00b7 Resize \u00b7 Circle \u00b7 Rounded \u00b7 Batch ZIP \u00b7 PWA"
+  "seo_badges": "Crop \u00b7 Resize \u00b7 Circle \u00b7 Rounded \u00b7 Batch ZIP \u00b7 PWA",
+  "processing": "Processing images...",
+  "dragDropHere": "Drag images here",
+  "orClickToSelect": "Or click to select image files",
+  "supportedFormats": "Supports JPG, PNG, WebP",
+  "maxSize": "Max 10MB",
+  "selectImageFirst": "Please select an image first",
+  "exportSuccess": "Image exported successfully!",
+  "exportFailed": "Export failed, please try again",
+  "selectImageFile": "Please select image files",
+  "loadSuccess": "Successfully loaded {count} images",
+  "loadFailed": "Image loading failed, please try again",
+  "userGuide": "User Guide",
+  "denseGrid": "Dense Grid",
+  "centerCross": "Center Cross",
+  "tips": {
+    "dragDrop": "💡 Drag images here, or click to select files",
+    "paste": "📋 You can also paste images directly (Ctrl+V)",
+    "batch": "📁 Supports batch upload of multiple images",
+    "autoCenter": "🎯 Click \"Auto center\" to let AI help you position the subject",
+    "grid": "📐 Enable grid guides for precise alignment",
+    "zoom": "🔍 Scroll to zoom, drag to move",
+    "batchExport": "📦 Batch export multiple sizes, download with one click",
+    "webp": "⚡ Choose WebP format for smaller files",
+    "preview": "👀 Preview display effects on different platforms"
+  },
+  "exportOptions": "Export Options",
+  "qualityLabel": "Quality: {quality}%",
+  "formatOptions": {
+    "png": { "name": "PNG", "desc": "Lossless compression, supports transparency", "icon": "🖼️" },
+    "jpeg": { "name": "JPEG", "desc": "Lossy compression, smaller files", "icon": "📷" },
+    "webp": { "name": "WebP", "desc": "Modern format, smaller size", "icon": "🌐" }
+  },
+  "batchPresets": {
+    "avatar": { "name": "Avatar Sizes", "sizes": [128, 256, 512], "icon": "👤" },
+    "ecommerce": { "name": "E-commerce Main Images", "sizes": [400, 800, 1200], "icon": "🛒" },
+    "social": { "name": "Social Media", "sizes": [512, 1024, 2048], "icon": "📱" },
+    "print": { "name": "High-Definition Print", "sizes": [1500, 3000, 4500], "icon": "🖨️" }
+  },
+  "popular": "🔥 Popular",
+  "platforms": {
+    "xiaohongshu": "Xiaohongshu",
+    "bilibili": "Bilibili",
+    "douyin": "Douyin",
+    "taobao": "Taobao",
+    "jd": "JD"
+  }
 }

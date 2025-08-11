@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface LoadingSpinnerProps {
   size?: 'small' | 'medium' | 'large'
@@ -138,6 +139,7 @@ export const FileUploadZone: React.FC<FileUploadZoneProps> = ({
   onDrop,
   isLoading = false
 }) => {
+  const { t } = useTranslation()
   const fileInputRef = React.useRef<HTMLInputElement>(null)
 
   const handleClick = () => {
@@ -173,7 +175,7 @@ export const FileUploadZone: React.FC<FileUploadZoneProps> = ({
         <div>
           <LoadingSpinner size="large" />
           <p style={{ marginTop: '16px', color: 'var(--muted)' }}>
-            正在处理图片...
+            {t('processing')}
           </p>
         </div>
       ) : (
@@ -182,14 +184,14 @@ export const FileUploadZone: React.FC<FileUploadZoneProps> = ({
             📁
           </div>
           <h3 style={{ margin: '0 0 8px 0', color: 'var(--text)' }}>
-            拖拽图片到这里
+            {t('dragDropHere')}
           </h3>
           <p style={{ margin: '0 0 16px 0', color: 'var(--muted)' }}>
-            或者点击选择图片文件
+            {t('orClickToSelect')}
           </p>
           <div className="badges" style={{ justifyContent: 'center' }}>
-            <div className="badge">支持 JPG、PNG、WebP</div>
-            <div className="badge">最大 10MB</div>
+            <div className="badge">{t('supportedFormats')}</div>
+            <div className="badge">{t('maxSize')}</div>
           </div>
         </>
       )}

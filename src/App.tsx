@@ -144,7 +144,7 @@ export default function App() {
     try {
       const imageFiles = files.filter(f => f.type.startsWith('image/'))
       if (!imageFiles.length) {
-        setToast({ message: '请选择图片文件', type: 'error' })
+        setToast({ message: t('selectImageFile'), type: 'error' })
         return
       }
       
@@ -156,9 +156,9 @@ export default function App() {
       setQueue(urls); 
       setActiveIdx(0); 
       setImageSrc(urls[0])
-      setToast({ message: `成功加载 ${urls.length} 张图片`, type: 'success' })
+      setToast({ message: t('loadSuccess', { count: urls.length }), type: 'success' })
     } catch (error) {
-      setToast({ message: '图片加载失败，请重试', type: 'error' })
+      setToast({ message: t('loadFailed'), type: 'error' })
     } finally {
       setIsLoading(false)
     }
@@ -185,7 +185,7 @@ export default function App() {
 
   const exportImage = useCallback(async () => {
     if (!imageSrc || !croppedAreaPixels) {
-      setToast({ message: '请先选择图片', type: 'warning' })
+      setToast({ message: t('selectImageFirst'), type: 'warning' })
       return
     }
     
@@ -216,9 +216,9 @@ export default function App() {
       const ext = (opts.mask !== 'rect' && format === 'jpeg') ? 'png' : (format === 'jpeg' ? 'jpg' : format)
       const ts = Date.now()
       saveAs(blob, `${filePrefix}-${lastPreset}-${ext === 'jpg' ? 'jpeg' : ext}-${ts}.${ext}`)
-      setToast({ message: '图片导出成功！', type: 'success' })
+      setToast({ message: t('exportSuccess'), type: 'success' })
     } catch (error) {
-      setToast({ message: '导出失败，请重试', type: 'error' })
+      setToast({ message: t('exportFailed'), type: 'error' })
     } finally {
       setWorking(false)
     }
@@ -342,7 +342,7 @@ export default function App() {
           </div>
           <div className="langs">
             <ThemeToggle />
-            <button className="ghost" onClick={() => setShowUserGuide(true)} title="使用指南">📖</button>
+            <button className="ghost" onClick={() => setShowUserGuide(true)} title={t('userGuide')}>📖</button>
             <button className="ghost" onClick={() => handleLanguageChange('en')}>EN</button>
             <button className="ghost" onClick={() => handleLanguageChange('zh')}>中文</button>
             <button className="ghost" onClick={() => handleLanguageChange('es')}>ES</button>
@@ -488,10 +488,10 @@ export default function App() {
           {batchProgress && (<div className="group"><h4>Batch progress</h4><div className="small">{batchProgress.done} / {batchProgress.total}</div></div>)}
           <div className="group">
             <h4>{t('overlay')}</h4>
-            <label className="row"><span>三分法</span><input type="checkbox" checked={showR3} onChange={e=>setShowR3(e.target.checked)} /></label>
-            <label className="row"><span>黄金比例</span><input type="checkbox" checked={showGolden} onChange={e=>setShowGolden(e.target.checked)} /></label>
-            <label className="row"><span>密集网格</span><input type="checkbox" checked={showGrid} onChange={e=>setShowGrid(e.target.checked)} /></label>
-            <label className="row"><span>中心十字</span><input type="checkbox" checked={showCenter} onChange={e=>setShowCenter(e.target.checked)} /></label>
+                    <label className="row"><span>{t('grid')}</span><input type="checkbox" checked={showR3} onChange={e=>setShowR3(e.target.checked)} /></label>
+        <label className="row"><span>{t('golden')}</span><input type="checkbox" checked={showGolden} onChange={e=>setShowGolden(e.target.checked)} /></label>
+        <label className="row"><span>{t('denseGrid')}</span><input type="checkbox" checked={showGrid} onChange={e=>setShowGrid(e.target.checked)} /></label>
+        <label className="row"><span>{t('centerCross')}</span><input type="checkbox" checked={showCenter} onChange={e=>setShowCenter(e.target.checked)} /></label>
           </div>
 
           {queue.length>1 && (
