@@ -1,5 +1,4 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 
 interface LoadingSpinnerProps {
   size?: 'small' | 'medium' | 'large'
@@ -139,7 +138,6 @@ export const FileUploadZone: React.FC<FileUploadZoneProps> = ({
   onDrop,
   isLoading = false
 }) => {
-  const { t } = useTranslation()
   const fileInputRef = React.useRef<HTMLInputElement>(null)
 
   const handleClick = () => {
@@ -175,7 +173,7 @@ export const FileUploadZone: React.FC<FileUploadZoneProps> = ({
         <div>
           <LoadingSpinner size="large" />
           <p style={{ marginTop: '16px', color: 'var(--muted)' }}>
-            {t('processing')}
+            Processing images...
           </p>
         </div>
       ) : (
@@ -184,14 +182,14 @@ export const FileUploadZone: React.FC<FileUploadZoneProps> = ({
             📁
           </div>
           <h3 style={{ margin: '0 0 8px 0', color: 'var(--text)' }}>
-            {t('dragDropHere')}
+            Drag images here
           </h3>
           <p style={{ margin: '0 0 16px 0', color: 'var(--muted)' }}>
-            {t('orClickToSelect')}
+            Or click to select image files
           </p>
           <div className="badges" style={{ justifyContent: 'center' }}>
-            <div className="badge">{t('supportedFormats')}</div>
-            <div className="badge">{t('maxSize')}</div>
+            <div className="badge">Supports JPG, PNG, WebP</div>
+            <div className="badge">Max 10MB</div>
           </div>
         </>
       )}

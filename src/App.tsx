@@ -5,7 +5,6 @@ import { presets, Preset } from './components/presets'
 import { getCroppedImage, readFileAsImage, fixExifOrientation, simpleSaliencyCenter } from './components/utils'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
-import { useTranslation } from 'react-i18next'
 import { GridOverlay } from './components/overlay'
 import SocialPreview from './components/socialPreview'
 import { ThemeToggle } from './components/themeToggle'
@@ -14,12 +13,10 @@ import { PresetCategories } from './components/presetCategories'
 import { MobileOptimizer, useIsMobile } from './components/mobileOptimizer'
 import { LoadingSpinner, ProgressBar, Toast, FileUploadZone } from './components/loadingStates'
 import { UserGuide, ErrorBoundary, FileValidator, KeyboardShortcuts } from './components/userGuide'
-import i18n from './i18n/setup'
 
 type Format = 'png' | 'jpeg' | 'webp'
 
 export default function App() {
-  const { t } = useTranslation()
   const isMobile = useIsMobile()
   const [imageSrc, setImageSrc] = useState<string | null>(null)
   const [crop, setCrop] = useState({ x: 0, y: 0 })
@@ -129,13 +126,7 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey)
   }, [queue, activeIdx])
 
-  // 语言切换处理
-  const handleLanguageChange = (lang: string) => {
-    i18n.changeLanguage(lang)
-    const currentPath = window.location.pathname
-    const newPath = `/${lang}${currentPath.includes('/zh') || currentPath.includes('/en') || currentPath.includes('/es') ? currentPath.substring(3) : ''}`
-    window.history.pushState(null, '', newPath)
-  }
+
 
   const onCropComplete = useCallback((_c:any, pixels:any) => setCroppedAreaPixels(pixels), [])
 
@@ -144,7 +135,7 @@ export default function App() {
     try {
       const imageFiles = files.filter(f => f.type.startsWith('image/'))
       if (!imageFiles.length) {
-        setToast({ message: t('selectImageFile'), type: 'error' })
+        setToast({ message: 'Please select image files', type: 'error' })
         return
       }
       
@@ -156,9 +147,9 @@ export default function App() {
       setQueue(urls); 
       setActiveIdx(0); 
       setImageSrc(urls[0])
-      setToast({ message: t('loadSuccess', { count: urls.length }), type: 'success' })
+      setToast({ message: `Successfully loaded ${urls.length} images`, type: 'success' })
     } catch (error) {
-      setToast({ message: t('loadFailed'), type: 'error' })
+      setToast({ message: 'Image loading failed, please try again', type: 'error' })
     } finally {
       setIsLoading(false)
     }
@@ -185,7 +176,7 @@ export default function App() {
 
   const exportImage = useCallback(async () => {
     if (!imageSrc || !croppedAreaPixels) {
-      setToast({ message: t('selectImageFirst'), type: 'warning' })
+      setToast({ message: 'Please select an image first', type: 'warning' })
       return
     }
     
@@ -216,9 +207,9 @@ export default function App() {
       const ext = (opts.mask !== 'rect' && format === 'jpeg') ? 'png' : (format === 'jpeg' ? 'jpg' : format)
       const ts = Date.now()
       saveAs(blob, `${filePrefix}-${lastPreset}-${ext === 'jpg' ? 'jpeg' : ext}-${ts}.${ext}`)
-      setToast({ message: t('exportSuccess'), type: 'success' })
+      setToast({ message: 'Image exported successfully!', type: 'success' })
     } catch (error) {
-      setToast({ message: t('exportFailed'), type: 'error' })
+      setToast({ message: 'Export failed, please try again', type: 'error' })
     } finally {
       setWorking(false)
     }
@@ -342,10 +333,7 @@ export default function App() {
           </div>
           <div className="langs">
             <ThemeToggle />
-            <button className="ghost" onClick={() => setShowUserGuide(true)} title={t('userGuide')}>📖</button>
-            <button className="ghost" onClick={() => handleLanguageChange('en')}>EN</button>
-            <button className="ghost" onClick={() => handleLanguageChange('zh')}>中文</button>
-            <button className="ghost" onClick={() => handleLanguageChange('es')}>ES</button>
+            <button className="ghost" onClick={() => setShowUserGuide(true)} title="User Guide">📖</button>
           </div>
         </div>
       </header>
@@ -487,11 +475,11 @@ export default function App() {
 
           {batchProgress && (<div className="group"><h4>Batch progress</h4><div className="small">{batchProgress.done} / {batchProgress.total}</div></div>)}
           <div className="group">
-            <h4>{t('overlay')}</h4>
-                    <label className="row"><span>{t('grid')}</span><input type="checkbox" checked={showR3} onChange={e=>setShowR3(e.target.checked)} /></label>
-        <label className="row"><span>{t('golden')}</span><input type="checkbox" checked={showGolden} onChange={e=>setShowGolden(e.target.checked)} /></label>
-        <label className="row"><span>{t('denseGrid')}</span><input type="checkbox" checked={showGrid} onChange={e=>setShowGrid(e.target.checked)} /></label>
-        <label className="row"><span>{t('centerCross')}</span><input type="checkbox" checked={showCenter} onChange={e=>setShowCenter(e.target.checked)} /></label>
+            <h4>Overlay</h4>
+                    <label className="row"><span>Rule of Thirds</span><input type="checkbox" checked={showR3} onChange={e=>setShowR3(e.target.checked)} /></label>
+        <label className="row"><span>Golden Ratio</span><input type="checkbox" checked={showGolden} onChange={e=>setShowGolden(e.target.checked)} /></label>
+        <label className="row"><span>Dense Grid</span><input type="checkbox" checked={showGrid} onChange={e=>setShowGrid(e.target.checked)} /></label>
+        <label className="row"><span>Center Cross</span><input type="checkbox" checked={showCenter} onChange={e=>setShowCenter(e.target.checked)} /></label>
           </div>
 
           {queue.length>1 && (

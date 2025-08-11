@@ -11,48 +11,48 @@ export const presets: Preset[] = [
   { platform: "Pinterest", type: "Pin", width: 1000, height: 1500, category: "social" },
   { platform: "Telegram", type: "Profile", width: 512, height: 512, category: "social" },
   
-  // 中国平台
-  { platform: "小红书", type: "笔记封面", width: 1080, height: 1440, category: "china" },
-  { platform: "B站", type: "封面", width: 1146, height: 717, category: "china" },
-  { platform: "豆瓣", type: "小组封面", width: 980, height: 300, category: "china" },
-  { platform: "抖音", type: "封面", width: 1080, height: 1920, category: "china" },
-  { platform: "微信", type: "头像", width: 132, height: 132, category: "china" },
-  { platform: "微博", type: "头像", width: 180, height: 180, category: "china" },
+  // Chinese platforms
+  { platform: "Xiaohongshu", type: "Note Cover", width: 1080, height: 1440, category: "china" },
+  { platform: "Bilibili", type: "Cover", width: 1146, height: 717, category: "china" },
+  { platform: "Douban", type: "Group Cover", width: 980, height: 300, category: "china" },
+  { platform: "Douyin", type: "Cover", width: 1080, height: 1920, category: "china" },
+  { platform: "WeChat", type: "Avatar", width: 132, height: 132, category: "china" },
+  { platform: "Weibo", type: "Avatar", width: 180, height: 180, category: "china" },
   
-  // 电商平台
-  { platform: "淘宝", type: "主图", width: 800, height: 800, category: "ecommerce" },
-  { platform: "淘宝", type: "白底图", width: 800, height: 800, category: "ecommerce" },
-  { platform: "京东", type: "主图", width: 800, height: 800, category: "ecommerce" },
-  { platform: "拼多多", type: "主图", width: 750, height: 750, category: "ecommerce" },
-  { platform: "Amazon", type: "主图", width: 1000, height: 1000, category: "ecommerce" },
-  { platform: "Etsy", type: "主图", width: 1000, height: 1000, category: "ecommerce" },
+  // E-commerce platforms
+  { platform: "Taobao", type: "Main Image", width: 800, height: 800, category: "ecommerce" },
+  { platform: "Taobao", type: "White Background", width: 800, height: 800, category: "ecommerce" },
+  { platform: "JD", type: "Main Image", width: 800, height: 800, category: "ecommerce" },
+  { platform: "Pinduoduo", type: "Main Image", width: 750, height: 750, category: "ecommerce" },
+  { platform: "Amazon", type: "Main Image", width: 1000, height: 1000, category: "ecommerce" },
+  { platform: "Etsy", type: "Main Image", width: 1000, height: 1000, category: "ecommerce" },
   
-  // 专业平台
-  { platform: "Behance", type: "项目封面", width: 1200, height: 675, category: "professional" },
+  // Professional platforms
+  { platform: "Behance", type: "Project Cover", width: 1200, height: 675, category: "professional" },
   { platform: "Dribbble", type: "Shot", width: 800, height: 600, category: "professional" },
-  { platform: "Figma", type: "封面", width: 1200, height: 800, category: "professional" },
+  { platform: "Figma", type: "Cover", width: 1200, height: 800, category: "professional" },
   
-  // 头像专用
-  { platform: "通用", type: "头像", width: 512, height: 512, category: "avatar" },
-  { platform: "通用", type: "小头像", width: 128, height: 128, category: "avatar" },
-  { platform: "通用", type: "大头像", width: 1024, height: 1024, category: "avatar" }
+  // Avatar presets
+  { platform: "Universal", type: "Avatar", width: 512, height: 512, category: "avatar" },
+  { platform: "Universal", type: "Small Avatar", width: 128, height: 128, category: "avatar" },
+  { platform: "Universal", type: "Large Avatar", width: 1024, height: 1024, category: "avatar" }
 ]
 
-// 预设组合
+// Preset combinations
 export const presetCombos = {
-  "电商主图": [
-    { platform: "淘宝", type: "主图", width: 800, height: 800 },
-    { platform: "淘宝", type: "白底图", width: 800, height: 800 },
-    { platform: "通用", type: "缩略图", width: 400, height: 400 }
+  "E-commerce Main Images": [
+    { platform: "Taobao", type: "Main Image", width: 800, height: 800 },
+    { platform: "Taobao", type: "White Background", width: 800, height: 800 },
+    { platform: "Universal", type: "Thumbnail", width: 400, height: 400 }
   ],
-  "社交媒体头像": [
-    { platform: "通用", type: "头像", width: 512, height: 512 },
-    { platform: "通用", type: "小头像", width: 128, height: 128 },
-    { platform: "通用", type: "大头像", width: 1024, height: 1024 }
+  "Social Media Avatars": [
+    { platform: "Universal", type: "Avatar", width: 512, height: 512 },
+    { platform: "Universal", type: "Small Avatar", width: 128, height: 128 },
+    { platform: "Universal", type: "Large Avatar", width: 1024, height: 1024 }
   ],
-  "内容创作者": [
+  "Content Creator": [
     { platform: "YouTube", type: "Thumbnail", width: 1280, height: 720 },
     { platform: "Instagram", type: "Post", width: 1080, height: 1080 },
-    { platform: "小红书", type: "笔记封面", width: 1080, height: 1440 }
+    { platform: "Xiaohongshu", type: "Note Cover", width: 1080, height: 1440 }
   ]
 }

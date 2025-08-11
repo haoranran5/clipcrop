@@ -1,5 +1,4 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 
 // 改进的预设卡片组件
 interface EnhancedPresetCardProps {
@@ -15,7 +14,6 @@ export const EnhancedPresetCard: React.FC<EnhancedPresetCardProps> = ({
   onClick,
   isPopular = false
 }) => {
-  const { t } = useTranslation()
   return (
     <div 
       className={`enhanced-preset-card ${isSelected ? 'selected' : ''} ${isPopular ? 'popular' : ''}`}
@@ -28,14 +26,14 @@ export const EnhancedPresetCard: React.FC<EnhancedPresetCardProps> = ({
           {preset.platform === 'LinkedIn' && '💼'}
           {preset.platform === 'Facebook' && '📘'}
           {preset.platform === 'YouTube' && '📺'}
-          {preset.platform === '小红书' && '📖'}
-          {preset.platform === 'B站' && '📺'}
-          {preset.platform === '抖音' && '🎵'}
-          {preset.platform === '淘宝' && '🛒'}
-          {preset.platform === '京东' && '🛒'}
-          {!['Instagram', 'Twitter/X', 'LinkedIn', 'Facebook', 'YouTube', '小红书', 'B站', '抖音', '淘宝', '京东'].includes(preset.platform) && '📱'}
+          {preset.platform === 'Xiaohongshu' && '📖'}
+          {preset.platform === 'Bilibili' && '📺'}
+          {preset.platform === 'Douyin' && '🎵'}
+          {preset.platform === 'Taobao' && '🛒'}
+          {preset.platform === 'JD' && '🛒'}
+          {!['Instagram', 'Twitter/X', 'LinkedIn', 'Facebook', 'YouTube', 'Xiaohongshu', 'Bilibili', 'Douyin', 'Taobao', 'JD'].includes(preset.platform) && '📱'}
         </div>
-        {isPopular && <div className="popular-badge">{t('popular')}</div>}
+        {isPopular && <div className="popular-badge">🔥 Popular</div>}
       </div>
       
       <div className="preset-info">
