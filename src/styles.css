@@ -278,6 +278,8 @@ input[type='range']{width:60%}
   background: rgba(255, 107, 107, 0.1);
   cursor: move;
   display: none;
+  will-change: transform;
+  transform: translate(50px, 50px);
 }
 
 .walnut-cropper .crop-handle {

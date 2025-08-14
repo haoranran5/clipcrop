@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from 'react'
+import { useState, useRef, useCallback, useEffect, useMemo } from 'react'
 
 interface CroppedResult {
   dataUrl: string
@@ -18,6 +18,9 @@ export default function PartialCrop() {
   const imageRef = useRef<HTMLImageElement>(null)
   const cropOverlayRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  
+  // 防抖机制
+  const debounceRef = useRef<NodeJS.Timeout>()
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -30,6 +33,15 @@ export default function PartialCrop() {
     if (!file.type.startsWith('image/')) {
       alert('Please select an image file!')
       return
+    }
+
+    // Track file upload
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'file_upload', {
+        event_category: 'walnut_cropper',
+        event_label: 'image_upload',
+        value: 1
+      })
     }
 
     const reader = new FileReader()
@@ -56,8 +68,7 @@ export default function PartialCrop() {
 
   const initCropArea = useCallback(() => {
     if (cropOverlayRef.current) {
-      cropOverlayRef.current.style.left = '50px'
-      cropOverlayRef.current.style.top = '50px'
+      cropOverlayRef.current.style.transform = 'translate(50px, 50px)'
       cropOverlayRef.current.style.width = '150px'
       cropOverlayRef.current.style.height = '150px'
       cropOverlayRef.current.style.display = 'block'
@@ -86,29 +97,43 @@ export default function PartialCrop() {
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!cropOverlayRef.current || !imageRef.current) return
 
-    if (isDragging) {
-      const containerRect = imageRef.current.getBoundingClientRect()
-      let newLeft = e.clientX - containerRect.left - startX
-      let newTop = e.clientY - containerRect.top - startY
-      
-      newLeft = Math.max(0, Math.min(newLeft, imageRef.current.offsetWidth - cropOverlayRef.current.offsetWidth))
-      newTop = Math.max(0, Math.min(newTop, imageRef.current.offsetHeight - cropOverlayRef.current.offsetHeight))
-      
-      cropOverlayRef.current.style.left = newLeft + 'px'
-      cropOverlayRef.current.style.top = newTop + 'px'
-    } else if (isResizing) {
-      const containerRect = imageRef.current.getBoundingClientRect()
-      const x = e.clientX - containerRect.left
-      const y = e.clientY - containerRect.top
-      resizeCropArea(x, y)
+    // 清除之前的防抖定时器
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current)
     }
+
+    // 使用防抖机制，减少频繁更新
+    debounceRef.current = setTimeout(() => {
+      requestAnimationFrame(() => {
+        if (isDragging) {
+          const containerRect = imageRef.current!.getBoundingClientRect()
+          let newLeft = e.clientX - containerRect.left - startX
+          let newTop = e.clientY - containerRect.top - startY
+          
+          newLeft = Math.max(0, Math.min(newLeft, imageRef.current!.offsetWidth - cropOverlayRef.current!.offsetWidth))
+          newTop = Math.max(0, Math.min(newTop, imageRef.current!.offsetHeight - cropOverlayRef.current!.offsetHeight))
+          
+          // 使用 transform 而不是 left/top 来提升性能
+          cropOverlayRef.current!.style.transform = `translate(${newLeft}px, ${newTop}px)`
+        } else if (isResizing) {
+          const containerRect = imageRef.current!.getBoundingClientRect()
+          const x = e.clientX - containerRect.left
+          const y = e.clientY - containerRect.top
+          resizeCropArea(x, y)
+        }
+      })
+    }, 16) // 约60fps的更新频率
   }, [isDragging, isResizing, startX, startY, currentHandle])
 
   const resizeCropArea = (x: number, y: number) => {
     if (!cropOverlayRef.current || !imageRef.current) return
 
-    const currentLeft = parseInt(cropOverlayRef.current.style.left)
-    const currentTop = parseInt(cropOverlayRef.current.style.top)
+    // 从 transform 中提取当前位置
+    const transform = cropOverlayRef.current.style.transform
+    const match = transform.match(/translate\((\d+)px,\s*(\d+)px\)/)
+    const currentLeft = match ? parseInt(match[1]) : 50
+    const currentTop = match ? parseInt(match[2]) : 50
+    
     const currentWidth = parseInt(cropOverlayRef.current.style.width)
     const currentHeight = parseInt(cropOverlayRef.current.style.height)
 
@@ -121,8 +146,7 @@ export default function PartialCrop() {
         const newWidth = currentLeft + currentWidth - x
         const newHeight = currentTop + currentHeight - y
         if (x >= 0 && y >= 0 && newWidth > 20 && newHeight > 20) {
-          cropOverlayRef.current.style.left = x + 'px'
-          cropOverlayRef.current.style.top = y + 'px'
+          cropOverlayRef.current.style.transform = `translate(${x}px, ${y}px)`
           cropOverlayRef.current.style.width = newWidth + 'px'
           cropOverlayRef.current.style.height = newHeight + 'px'
         }
@@ -131,7 +155,7 @@ export default function PartialCrop() {
         const newWidth2 = x - currentLeft
         const newHeight2 = currentTop + currentHeight - y
         if (y >= 0 && newWidth2 > 20 && newHeight2 > 20) {
-          cropOverlayRef.current.style.top = y + 'px'
+          cropOverlayRef.current.style.transform = `translate(${currentLeft}px, ${y}px)`
           cropOverlayRef.current.style.width = Math.min(newWidth2, imageRef.current.offsetWidth - currentLeft) + 'px'
           cropOverlayRef.current.style.height = newHeight2 + 'px'
         }
@@ -140,7 +164,7 @@ export default function PartialCrop() {
         const newWidth3 = currentLeft + currentWidth - x
         const newHeight3 = y - currentTop
         if (x >= 0 && newWidth3 > 20 && newHeight3 > 20) {
-          cropOverlayRef.current.style.left = x + 'px'
+          cropOverlayRef.current.style.transform = `translate(${x}px, ${currentTop}px)`
           cropOverlayRef.current.style.width = newWidth3 + 'px'
           cropOverlayRef.current.style.height = Math.min(newHeight3, imageRef.current.offsetHeight - currentTop) + 'px'
         }
@@ -172,8 +196,11 @@ export default function PartialCrop() {
     const scaleX = imageRef.current.naturalWidth / imageRef.current.offsetWidth
     const scaleY = imageRef.current.naturalHeight / imageRef.current.offsetHeight
     
-    const cropLeft = parseInt(cropOverlayRef.current.style.left) * scaleX
-    const cropTop = parseInt(cropOverlayRef.current.style.top) * scaleY
+    // 从 transform 中提取位置
+    const transform = cropOverlayRef.current.style.transform
+    const match = transform.match(/translate\((\d+)px,\s*(\d+)px\)/)
+    const cropLeft = (match ? parseInt(match[1]) : 50) * scaleX
+    const cropTop = (match ? parseInt(match[2]) : 50) * scaleY
     const scaledCropWidth = cropWidth * scaleX
     const scaledCropHeight = cropHeight * scaleY
     
@@ -191,6 +218,16 @@ export default function PartialCrop() {
           name: `Walnut_${croppedResults.length + 1}.png`
         }
         setCroppedResults([...croppedResults, newResult])
+        
+        // Track crop action
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'crop_added', {
+            event_category: 'walnut_cropper',
+            event_label: 'crop_added',
+            value: croppedResults.length + 1
+          })
+        }
+        
         alert(`Added ${croppedResults.length + 1} crop area!\nTip: You can continue selecting other walnut areas`)
       } else {
         alert('Crop failed, please try again!')
@@ -202,8 +239,7 @@ export default function PartialCrop() {
 
   const resetCrop = () => {
     if (cropOverlayRef.current) {
-      cropOverlayRef.current.style.left = '50px'
-      cropOverlayRef.current.style.top = '50px'
+      cropOverlayRef.current.style.transform = 'translate(50px, 50px)'
       cropOverlayRef.current.style.width = '150px'
       cropOverlayRef.current.style.height = '150px'
     }
@@ -219,6 +255,16 @@ export default function PartialCrop() {
 
   const downloadSingle = (index: number) => {
     const result = croppedResults[index]
+    
+    // Track single download
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'single_download', {
+        event_category: 'walnut_cropper',
+        event_label: 'single_download',
+        value: 1
+      })
+    }
+    
     const link = document.createElement('a')
     link.download = result.name
     link.href = result.dataUrl
@@ -236,6 +282,15 @@ export default function PartialCrop() {
     if (croppedResults.length === 0) {
       alert('No images to download!')
       return
+    }
+
+    // Track batch download
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'batch_download', {
+        event_category: 'walnut_cropper',
+        event_label: 'batch_download',
+        value: croppedResults.length
+      })
     }
 
     let downloadCount = 0
@@ -285,6 +340,22 @@ export default function PartialCrop() {
       document.removeEventListener('mouseup', stopDragResize)
     }
   }, [handleMouseMove, stopDragResize])
+
+  // Analytics tracking
+  useEffect(() => {
+    // Google Analytics page view
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('config', 'G-N7DB775N0W', {
+        page_title: 'Walnut Image Cropper',
+        page_location: window.location.href
+      })
+    }
+
+    // Microsoft Clarity tracking
+    if (typeof window !== 'undefined' && (window as any).clarity) {
+      (window as any).clarity('set', 'page_title', 'Walnut Image Cropper')
+    }
+  }, [])
 
   return (
     <div className="walnut-cropper">
