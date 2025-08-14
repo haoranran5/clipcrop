@@ -30,7 +30,6 @@ export type ExportOptions = {
   filters?: { brightness:number, contrast:number, saturation:number, grayscale:number, sepia:number, blur:number } | null;
   feather?: number;
 }
-import pica from 'pica'
 
 export async function getCroppedImage(imageSrc:string, pixelCrop:{x:number;y:number;width:number;height:number}, opts:ExportOptions={}):Promise<Blob>{
   const { rotation=0, format='png', quality=0.92, mask='rect', radius=24, outSize, borderColor, borderWidth,
