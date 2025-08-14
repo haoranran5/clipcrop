@@ -21,7 +21,7 @@ export default function App() {
   const [radius, setRadius] = useState(24)
   const [borderColor, setBorderColor] = useState<string>('#ffffff')
   const [borderWidth, setBorderWidth] = useState<number>(0)
-  const [filters, setFilters] = useState({ brightness: 100, contrast: 100, saturation: 100 })
+  const [filters, setFilters] = useState({ brightness: 100, contrast: 100, saturation: 100, grayscale: 0, sepia: 0, blur: 0 })
   const [showGrid, setShowGrid] = useState(true)
   const [working, setWorking] = useState(false)
 
