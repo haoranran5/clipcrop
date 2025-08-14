@@ -32,8 +32,8 @@ export type ExportOptions = {
 }
 
 export async function getCroppedImage(imageSrc:string, pixelCrop:{x:number;y:number;width:number;height:number}, opts:ExportOptions={}):Promise<Blob>{
-  const { rotation=0, format='png', quality=0.92, mask='rect', radius=24, outSize, borderColor, borderWidth,
-    padding=0, background=null, shadow=null, filters=null, feather=0 } = opts
+  const { rotation=0, format='png', quality=0.92, mask='rect', radius=24, outSize: _outSize, borderColor, borderWidth,
+    padding=0, background=null, shadow: _shadow, filters=null, feather=0 } = opts
   const image = await createImage(imageSrc)
   const safeArea = Math.max(image.width, image.height) * 1.5
   const stage = document.createElement('canvas'); stage.width = safeArea; stage.height = safeArea

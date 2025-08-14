@@ -1,5 +1,5 @@
 
-import React from 'react'
+
 export function GridOverlay({ 
   showRuleOfThirds, 
   showGolden, 

@@ -4,7 +4,6 @@
 // this function will use it; otherwise returns null.
 export async function tryDecodeHEIC(blob: Blob): Promise<Blob | null> {
   try {
-    await import('/libs/heic/decoder.js') // dynamic
     // @ts-ignore
     if (window.HEIC && typeof window.HEIC.decode === 'function') {
       // @ts-ignore

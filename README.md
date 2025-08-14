@@ -71,7 +71,7 @@ npm run build
 
 ## 🚀 部署 (Vercel)
 
-使用 `vercel.json` (Vite → dist)。
+使用 `vercel.json` 配置，构建输出到 `dist` 目录。
 
 ## ⌨️ 快捷键
 

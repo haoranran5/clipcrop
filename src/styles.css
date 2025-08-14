@@ -26,10 +26,16 @@ button{background:#12161b;border:1px solid #2a3442;color:var(--text);border-radi
 button:hover{transform:translateY(-1px)}
 button.primary{background:var(--brand);border-color:var(--brand);color:white}
 .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.nav-menu{display:flex;gap:8px}
+.nav-btn{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:8px 16px;cursor:pointer;transition:.15s;font-size:14px}
+.nav-btn:hover{background:var(--panel);color:var(--text)}
+.nav-btn.active{background:var(--brand);border-color:var(--brand);color:white}
 .brand{display:flex;gap:10px;align-items:center}
 .brand img{border-radius:10px}
 .canvas-wrap{position:relative;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;min-height:300px;height:calc(100vh - 110px);overflow:hidden}
 .dropzone{border:2px dashed #2a3442;border-radius:14px;padding:20px;text-align:center}
+.browse-btn{background:var(--brand);border:1px solid var(--brand);color:white;border-radius:10px;padding:12px 24px;cursor:pointer;transition:.15s;font-size:14px;font-weight:500;margin-top:12px}
+.browse-btn:hover{background:#1677e6;transform:translateY(-1px)}
 input[type='range']{width:60%}
 
 /* Preset Grid */
@@ -78,6 +84,16 @@ input[type='range']{width:60%}
   .topbar {
     flex-direction: column;
     gap: 8px;
+  }
+  
+  .nav-menu {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .nav-btn {
+    width: 100%;
+    text-align: center;
   }
   
   .brand h1 {
