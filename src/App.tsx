@@ -246,6 +246,7 @@ export default function App() {
         slot="0987654321"
         format="auto"
         responsive={true}
+        style={{ marginTop: '0', marginBottom: '20px' }}
       />
 
       {/* 添加有价值的内容区域 */}

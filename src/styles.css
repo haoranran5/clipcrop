@@ -61,7 +61,8 @@ input[type='range']{width:60%}
 
 /* Bottom Ad Container */
 .ad-container:last-of-type {
-  margin: 20px auto 40px auto;
+  margin: 0 auto 20px auto;
+  max-width: 100%;
 }
 
 /* Ad Placeholder Styles */
