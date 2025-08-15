@@ -105,15 +105,15 @@ export default function App() {
         </div>
       </header>
 
-      <main>
-        {/* Google AdSense - Top Banner */}
-        <AdSense 
-          client="ca-pub-3844052645861702"
-          slot="1234567890"
-          format="auto"
-          responsive={true}
-        />
+      {/* Google AdSense - Top Banner */}
+      <AdSense 
+        client="ca-pub-3844052645861702"
+        slot="1234567890"
+        format="auto"
+        responsive={true}
+      />
 
+      <main>
         {currentPage === 'main' ? (
           <>
             <div className="canvas-wrap">
@@ -238,15 +238,15 @@ export default function App() {
           </Suspense>
         )}
 
-        {/* Google AdSense - Bottom Banner */}
-        <AdSense 
-          client="ca-pub-3844052645861702"
-          slot="0987654321"
-          format="auto"
-          responsive={true}
-        />
-
       </main>
+
+      {/* Google AdSense - Bottom Banner */}
+      <AdSense 
+        client="ca-pub-3844052645861702"
+        slot="0987654321"
+        format="auto"
+        responsive={true}
+      />
 
       {/* 添加有价值的内容区域 */}
       <ContentSection />
