@@ -5,117 +5,117 @@ export default function ContentSection() {
     <div className="content-section">
       <div className="container">
         <section className="features">
-          <h2>强大的在线图片裁剪工具</h2>
-          <p>ClipCrop 是一款功能强大的在线图片裁剪工具，专为设计师、营销人员和内容创作者设计。无需下载软件，直接在浏览器中完成所有图片编辑工作。</p>
+          <h2>Powerful Online Image Cropping Tool</h2>
+          <p>ClipCrop is a powerful online image cropping tool designed for designers, marketers, and content creators. No software download required - complete all image editing tasks directly in your browser.</p>
           
-          <div className="feature-grid">
-            <div className="feature-card">
-              <h3>🎯 精确裁剪</h3>
-              <p>支持多种裁剪模式：自由裁剪、固定比例、圆形裁剪、圆角裁剪等，满足各种设计需求。</p>
+                      <div className="feature-grid">
+              <div className="feature-card">
+                <h3>🎯 Precise Cropping</h3>
+                <p>Support multiple cropping modes: free crop, fixed ratio, circle crop, rounded corners, and more to meet various design needs.</p>
+              </div>
+              
+              <div className="feature-card">
+                <h3>📱 Social Media Optimization</h3>
+                <p>Built-in size presets for Instagram, Facebook, Twitter, LinkedIn and other mainstream social media platforms for one-click adaptation.</p>
+              </div>
+              
+              <div className="feature-card">
+                <h3>🎨 Professional Filters</h3>
+                <p>Provide brightness, contrast, saturation, grayscale, vintage and other filter effects to make your images more outstanding.</p>
+              </div>
+              
+              <div className="feature-card">
+                <h3>⚡ Batch Processing</h3>
+                <p>Support batch upload and export, process multiple images at once, greatly improving work efficiency.</p>
+              </div>
+              
+              <div className="feature-card">
+                <h3>🔒 Privacy Protection</h3>
+                <p>All image processing is completed in your browser and will not be uploaded to the server, ensuring your privacy and security.</p>
+              </div>
+              
+              <div className="feature-card">
+                <h3>📱 Mobile Friendly</h3>
+                <p>Responsive design, perfectly adapts to mobile phones, tablets and desktop devices, edit images anytime, anywhere.</p>
+              </div>
             </div>
-            
-            <div className="feature-card">
-              <h3>📱 社交媒体优化</h3>
-              <p>内置Instagram、Facebook、Twitter、LinkedIn等主流社交媒体的尺寸预设，一键适配。</p>
-            </div>
-            
-            <div className="feature-card">
-              <h3>🎨 专业滤镜</h3>
-              <p>提供亮度、对比度、饱和度、灰度、复古等多种滤镜效果，让您的图片更加出彩。</p>
-            </div>
-            
-            <div className="feature-card">
-              <h3>⚡ 批量处理</h3>
-              <p>支持批量上传和导出，一次处理多张图片，大大提高工作效率。</p>
-            </div>
-            
-            <div className="feature-card">
-              <h3>🔒 隐私保护</h3>
-              <p>所有图片处理都在您的浏览器中完成，不会上传到服务器，确保您的隐私安全。</p>
-            </div>
-            
-            <div className="feature-card">
-              <h3>📱 移动友好</h3>
-              <p>响应式设计，完美适配手机、平板和桌面设备，随时随地编辑图片。</p>
-            </div>
-          </div>
         </section>
 
         <section className="how-to-use">
-          <h2>如何使用 ClipCrop</h2>
+          <h2>How to Use ClipCrop</h2>
           <div className="steps">
             <div className="step">
               <div className="step-number">1</div>
-              <h3>上传图片</h3>
-              <p>点击上传按钮或直接拖拽图片到编辑区域，支持JPG、PNG、WebP等格式。</p>
+              <h3>Upload Image</h3>
+              <p>Click the upload button or drag and drop images directly to the editing area. Supports JPG, PNG, WebP and other formats.</p>
             </div>
             
             <div className="step">
               <div className="step-number">2</div>
-              <h3>选择裁剪模式</h3>
-              <p>选择全图裁剪或部分裁剪模式，根据需要调整裁剪区域和比例。</p>
+              <h3>Choose Cropping Mode</h3>
+              <p>Select full image cropping or partial cropping mode, adjust the cropping area and ratio as needed.</p>
             </div>
             
             <div className="step">
               <div className="step-number">3</div>
-              <h3>应用效果</h3>
-              <p>调整滤镜效果、边框样式、圆角半径等参数，实时预览效果。</p>
+              <h3>Apply Effects</h3>
+              <p>Adjust filter effects, border styles, corner radius and other parameters with real-time preview.</p>
             </div>
             
             <div className="step">
               <div className="step-number">4</div>
-              <h3>导出图片</h3>
-              <p>选择输出格式和质量，点击导出按钮下载处理后的图片。</p>
+              <h3>Export Image</h3>
+              <p>Choose output format and quality, click the export button to download the processed image.</p>
             </div>
           </div>
         </section>
 
         <section className="use-cases">
-          <h2>适用场景</h2>
+          <h2>Use Cases</h2>
           <div className="use-cases-grid">
             <div className="use-case">
-              <h3>社交媒体营销</h3>
-              <p>为Instagram、Facebook、Twitter等平台制作完美尺寸的图片，提升品牌形象。</p>
+              <h3>Social Media Marketing</h3>
+              <p>Create perfectly sized images for Instagram, Facebook, Twitter and other platforms to enhance brand image.</p>
             </div>
             
             <div className="use-case">
-              <h3>电商产品图</h3>
-              <p>统一产品图片尺寸，添加品牌水印，提升产品展示效果。</p>
+              <h3>E-commerce Product Images</h3>
+              <p>Standardize product image sizes, add brand watermarks, and improve product display effects.</p>
             </div>
             
             <div className="use-case">
-              <h3>个人头像</h3>
-              <p>制作圆形或圆角头像，适配各种社交平台和个人网站。</p>
+              <h3>Personal Avatars</h3>
+              <p>Create circular or rounded avatars that adapt to various social platforms and personal websites.</p>
             </div>
             
             <div className="use-case">
-              <h3>博客配图</h3>
-              <p>为博客文章制作统一风格的配图，提升阅读体验。</p>
+              <h3>Blog Illustrations</h3>
+              <p>Create unified style illustrations for blog articles to enhance reading experience.</p>
             </div>
           </div>
         </section>
 
         <section className="faq">
-          <h2>常见问题</h2>
+          <h2>Frequently Asked Questions</h2>
           <div className="faq-list">
             <div className="faq-item">
-              <h3>支持哪些图片格式？</h3>
-              <p>支持JPG、PNG、WebP、GIF等主流图片格式，输出格式包括PNG、JPEG、WebP。</p>
+              <h3>What image formats are supported?</h3>
+              <p>Supports mainstream image formats such as JPG, PNG, WebP, GIF, with output formats including PNG, JPEG, WebP.</p>
             </div>
             
             <div className="faq-item">
-              <h3>图片会上传到服务器吗？</h3>
-              <p>不会。所有图片处理都在您的浏览器中完成，确保您的隐私安全。</p>
+              <h3>Are images uploaded to the server?</h3>
+              <p>No. All image processing is completed in your browser, ensuring your privacy and security.</p>
             </div>
             
             <div className="faq-item">
-              <h3>可以批量处理图片吗？</h3>
-              <p>可以。支持批量上传和导出，一次可以处理多张图片。</p>
+              <h3>Can I process images in batch?</h3>
+              <p>Yes. Supports batch upload and export, allowing you to process multiple images at once.</p>
             </div>
             
             <div className="faq-item">
-              <h3>支持哪些社交媒体尺寸？</h3>
-              <p>支持Instagram、Facebook、Twitter、LinkedIn、YouTube、Pinterest等主流平台的尺寸预设。</p>
+              <h3>What social media sizes are supported?</h3>
+              <p>Supports size presets for mainstream platforms such as Instagram, Facebook, Twitter, LinkedIn, YouTube, Pinterest and more.</p>
             </div>
           </div>
         </section>

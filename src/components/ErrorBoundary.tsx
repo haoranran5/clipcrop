@@ -38,20 +38,20 @@ export default class ErrorBoundary extends Component<Props, State> {
         return this.props.fallback
       }
 
-      return (
-        <div className="error-boundary">
-          <div className="error-content">
-            <h2>😔 出现了一些问题</h2>
-            <p>我们正在努力修复这个问题。请刷新页面重试。</p>
-            <button 
-              onClick={() => window.location.reload()}
-              className="retry-btn"
-            >
-              刷新页面
-            </button>
+              return (
+          <div className="error-boundary">
+            <div className="error-content">
+              <h2>😔 Something went wrong</h2>
+              <p>We're working to fix this issue. Please refresh the page and try again.</p>
+              <button 
+                onClick={() => window.location.reload()}
+                className="retry-btn"
+              >
+                Refresh Page
+              </button>
+            </div>
           </div>
-        </div>
-      )
+        )
     }
 
     return this.props.children

@@ -15,7 +15,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui
 
 header{position:sticky;top:0;background:rgba(11,13,16,.8);backdrop-filter:blur(6px);z-index:10;border-bottom:1px solid var(--line)}
 .container{max-width:1200px;margin:0 auto;padding:12px}
-main{display:grid;grid-template-columns:1fr 360px;gap:16px;height:calc(100vh - 64px);padding:12px}
+main{display:grid;grid-template-columns:1fr 360px;gap:16px;min-height:calc(100vh - 64px);padding:12px}
 h1{font-size:18px;margin:0}
 aside{overflow:auto;border-left:1px solid var(--line);padding:10px}
 .controls .group{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px;background:var(--panel)}
@@ -32,7 +32,7 @@ button.primary{background:var(--brand);border-color:var(--brand);color:white}
 .nav-btn.active{background:var(--brand);border-color:var(--brand);color:white}
 .brand{display:flex;gap:10px;align-items:center}
 .brand img{border-radius:10px}
-.canvas-wrap{position:relative;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;min-height:300px;height:calc(100vh - 110px);overflow:hidden}
+.canvas-wrap{position:relative;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;min-height:300px;height:calc(100vh - 110px);max-height:600px;overflow:hidden}
 .dropzone{border:2px dashed #2a3442;border-radius:14px;padding:20px;text-align:center}
 .browse-btn{background:var(--brand);border:1px solid var(--brand);color:white;border-radius:10px;padding:12px 24px;cursor:pointer;transition:.15s;font-size:14px;font-weight:500;margin-top:12px}
 .browse-btn:hover{background:#1677e6;transform:translateY(-1px)}
@@ -594,8 +594,8 @@ input[type='range']{width:60%}
 @media (max-width: 768px) {
   main {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto;
-    height: calc(100vh - 64px);
+    grid-template-rows: auto;
+    min-height: auto;
     gap: 8px;
     padding: 8px;
   }
@@ -646,7 +646,8 @@ input[type='range']{width:60%}
   
   .canvas-wrap {
     min-height: 200px;
-    height: calc(100vh - 200px);
+    height: 300px;
+    max-height: 300px;
   }
   
   .dropzone {

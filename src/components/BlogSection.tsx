@@ -4,8 +4,8 @@ export default function BlogSection() {
   return (
     <div className="blog-section">
       <div className="container">
-        <h2>图片编辑技巧与教程</h2>
-        <p>学习专业的图片编辑技巧，提升您的设计能力</p>
+        <h2>Image Editing Tips & Tutorials</h2>
+        <p>Learn professional image editing techniques to enhance your design skills</p>
         
         <div className="blog-grid">
           <article className="blog-card">
@@ -13,11 +13,11 @@ export default function BlogSection() {
               <div className="placeholder-image">📸</div>
             </div>
             <div className="blog-content">
-              <h3>如何制作完美的社交媒体头像</h3>
-              <p>社交媒体头像是最重要的个人品牌元素之一。本文将教您如何选择合适的图片、裁剪技巧以及如何在不同平台上保持一致性。</p>
+              <h3>How to Create Perfect Social Media Avatars</h3>
+              <p>Social media avatars are one of the most important personal branding elements. This article will teach you how to choose the right images, cropping techniques, and how to maintain consistency across different platforms.</p>
               <div className="blog-meta">
-                <span className="read-time">5分钟阅读</span>
-                <span className="category">教程</span>
+                <span className="read-time">5 min read</span>
+                <span className="category">Tutorial</span>
               </div>
             </div>
           </article>
@@ -27,11 +27,11 @@ export default function BlogSection() {
               <div className="placeholder-image">🎨</div>
             </div>
             <div className="blog-content">
-              <h3>电商产品图片优化指南</h3>
-              <p>高质量的产品图片是电商成功的关键。了解如何拍摄、裁剪和优化产品图片，提升转化率和用户体验。</p>
+              <h3>E-commerce Product Image Optimization Guide</h3>
+              <p>High-quality product images are key to e-commerce success. Learn how to shoot, crop, and optimize product images to improve conversion rates and user experience.</p>
               <div className="blog-meta">
-                <span className="read-time">8分钟阅读</span>
-                <span className="category">电商</span>
+                <span className="read-time">8 min read</span>
+                <span className="category">E-commerce</span>
               </div>
             </div>
           </article>
@@ -41,11 +41,11 @@ export default function BlogSection() {
               <div className="placeholder-image">📱</div>
             </div>
             <div className="blog-content">
-              <h3>移动端图片处理最佳实践</h3>
-              <p>随着移动设备使用率的增长，了解移动端图片处理的最佳实践变得越来越重要。本文分享实用的技巧和工具。</p>
+              <h3>Mobile Image Processing Best Practices</h3>
+              <p>As mobile device usage grows, understanding best practices for mobile image processing becomes increasingly important. This article shares practical tips and tools.</p>
               <div className="blog-meta">
-                <span className="read-time">6分钟阅读</span>
-                <span className="category">移动端</span>
+                <span className="read-time">6 min read</span>
+                <span className="category">Mobile</span>
               </div>
             </div>
           </article>
@@ -55,11 +55,11 @@ export default function BlogSection() {
               <div className="placeholder-image">🎯</div>
             </div>
             <div className="blog-content">
-              <h3>图片格式选择指南：JPG vs PNG vs WebP</h3>
-              <p>不同的图片格式适用于不同的场景。了解各种格式的特点、优缺点以及何时使用它们，帮助您做出最佳选择。</p>
+              <h3>Image Format Selection Guide: JPG vs PNG vs WebP</h3>
+              <p>Different image formats are suitable for different scenarios. Understanding the characteristics, advantages and disadvantages of various formats, and when to use them, helps you make the best choice.</p>
               <div className="blog-meta">
-                <span className="read-time">7分钟阅读</span>
-                <span className="category">技术</span>
+                <span className="read-time">7 min read</span>
+                <span className="category">Technical</span>
               </div>
             </div>
           </article>

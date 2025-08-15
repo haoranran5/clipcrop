@@ -6,24 +6,24 @@ export default function Footer() {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>关于 ClipCrop</h3>
-            <p>ClipCrop 是一款免费的在线图片裁剪工具，致力于为用户提供简单、高效、安全的图片编辑体验。我们相信每个人都应该能够轻松地创建专业的图片内容。</p>
+            <h3>About ClipCrop</h3>
+            <p>ClipCrop is a free online image cropping tool dedicated to providing users with simple, efficient, and secure image editing experience. We believe everyone should be able to easily create professional image content.</p>
           </div>
           
           <div className="footer-section">
-            <h3>功能特色</h3>
+            <h3>Features</h3>
             <ul>
-              <li>在线图片裁剪</li>
-              <li>社交媒体优化</li>
-              <li>批量处理</li>
-              <li>隐私保护</li>
-              <li>移动友好</li>
-              <li>免费使用</li>
+              <li>Online Image Cropping</li>
+              <li>Social Media Optimization</li>
+              <li>Batch Processing</li>
+              <li>Privacy Protection</li>
+              <li>Mobile Friendly</li>
+              <li>Free to Use</li>
             </ul>
           </div>
           
           <div className="footer-section">
-            <h3>支持格式</h3>
+            <h3>Supported Formats</h3>
             <ul>
               <li>JPG / JPEG</li>
               <li>PNG</li>
@@ -34,8 +34,8 @@ export default function Footer() {
           </div>
           
           <div className="footer-section">
-            <h3>联系我们</h3>
-            <p>如果您有任何问题或建议，欢迎联系我们。</p>
+            <h3>Contact Us</h3>
+            <p>If you have any questions or suggestions, please feel free to contact us.</p>
             <div className="social-links">
               <a href="#" title="GitHub">GitHub</a>
               <a href="#" title="Twitter">Twitter</a>
@@ -46,11 +46,11 @@ export default function Footer() {
         
         <div className="footer-bottom">
           <div className="footer-info">
-            <p>&copy; 2024 ClipCrop. 保留所有权利。</p>
+            <p>&copy; 2024 ClipCrop. All rights reserved.</p>
             <div className="footer-links">
-              <a href="/privacy.html">隐私政策</a>
-              <a href="/terms.html">使用条款</a>
-              <a href="/faq.html">常见问题</a>
+              <a href="/privacy.html">Privacy Policy</a>
+              <a href="/terms.html">Terms of Service</a>
+              <a href="/faq.html">FAQ</a>
             </div>
           </div>
         </div>
