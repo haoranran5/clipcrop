@@ -1,9 +1,17 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, lazy, Suspense } from 'react'
 import Cropper from 'react-easy-crop'
 import { presets, Preset } from './components/presets'
 import { getCroppedImage, readFileAsImage, fixExifOrientation } from './components/utils'
 import { saveAs } from 'file-saver'
-import PartialCrop from './PartialCrop'
+import AdSense from './components/AdSense'
+import ContentSection from './components/ContentSection'
+import BlogSection from './components/BlogSection'
+import Footer from './components/Footer'
+import ErrorBoundary from './components/ErrorBoundary'
+import LoadingSpinner from './components/LoadingSpinner'
+
+// 懒加载组件
+const PartialCrop = lazy(() => import('./PartialCrop'))
 
 type Format = 'png' | 'jpeg' | 'webp'
 
@@ -70,8 +78,9 @@ export default function App() {
   }
 
   return (
-    <div className="app">
-      <header>
+    <ErrorBoundary>
+      <div className="app">
+        <header>
         <div className="container">
           <div className="topbar">
             <div className="brand">
@@ -97,6 +106,14 @@ export default function App() {
       </header>
 
       <main>
+        {/* Google AdSense - Top Banner */}
+        <AdSense 
+          client="ca-pub-3844052645861702"
+          slot="1234567890"
+          format="auto"
+          responsive={true}
+        />
+
         {currentPage === 'main' ? (
           <>
             <div className="canvas-wrap">
@@ -216,9 +233,29 @@ export default function App() {
             </aside>
           </>
         ) : (
-          <PartialCrop />
+          <Suspense fallback={<LoadingSpinner text="Loading Partial Cropper..." />}>
+            <PartialCrop />
+          </Suspense>
         )}
+
+        {/* Google AdSense - Bottom Banner */}
+        <AdSense 
+          client="ca-pub-3844052645861702"
+          slot="0987654321"
+          format="auto"
+          responsive={true}
+        />
       </main>
-    </div>
+
+      {/* 添加有价值的内容区域 */}
+      <ContentSection />
+      
+      {/* 博客文章区域 */}
+      <BlogSection />
+      
+      {/* 页脚 */}
+      <Footer />
+      </div>
+    </ErrorBoundary>
   )
 }
