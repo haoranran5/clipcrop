@@ -116,7 +116,8 @@ export default function App() {
       <main>
         {currentPage === 'main' ? (
           <>
-            <div className="canvas-wrap">
+            <div className="main-content">
+              <div className="canvas-wrap">
               {!imageSrc ? (
                 <div className="dropzone">
                   <p>Drag and drop images here or click to browse</p>
@@ -231,6 +232,16 @@ export default function App() {
                 </div>
               </div>
             </aside>
+            </div>
+            
+            {/* Google AdSense - Bottom Banner */}
+            <AdSense 
+              client="ca-pub-3844052645861702"
+              slot="0987654321"
+              format="auto"
+              responsive={true}
+              style={{ marginTop: '0', marginBottom: '20px' }}
+            />
           </>
         ) : (
           <Suspense fallback={<LoadingSpinner text="Loading Partial Cropper..." />}>
@@ -239,15 +250,6 @@ export default function App() {
         )}
 
       </main>
-
-      {/* Google AdSense - Bottom Banner */}
-      <AdSense 
-        client="ca-pub-3844052645861702"
-        slot="0987654321"
-        format="auto"
-        responsive={true}
-        style={{ marginTop: '0', marginBottom: '20px' }}
-      />
 
       {/* 添加有价值的内容区域 */}
       <ContentSection />

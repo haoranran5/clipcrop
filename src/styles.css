@@ -15,8 +15,9 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui
 
 header{position:sticky;top:0;background:rgba(11,13,16,.8);backdrop-filter:blur(6px);z-index:10;border-bottom:1px solid var(--line)}
 .container{max-width:1200px;margin:0 auto;padding:12px}
-main{display:grid;grid-template-columns:1fr 360px;gap:16px;min-height:calc(100vh - 64px);padding:12px}
+main{display:flex;flex-direction:column;min-height:calc(100vh - 64px);padding:12px}
 h1{font-size:18px;margin:0}
+.main-content{display:grid;grid-template-columns:1fr 360px;gap:16px;margin-bottom:16px}
 aside{overflow:auto;border-left:1px solid var(--line);padding:10px}
 .controls .group{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px;background:var(--panel)}
 .group h4{margin:0 0 8px 0;color:#a9b4c0;font-weight:600}
